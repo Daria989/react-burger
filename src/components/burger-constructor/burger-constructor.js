@@ -23,7 +23,7 @@ function BurgerConstructor(props) {
           </div>
           <div className={burgerConstructor.box}>
             { data.slice(1).map(obj =>
-              <div className={`mb-4 mr-2 ${burgerConstructor.element}`}>
+              <div key={obj._id} className={`mb-4 mr-2 ${burgerConstructor.element}`}>
                 <DragIcon />
                 <ConstructorElement
                   text={obj.name}
