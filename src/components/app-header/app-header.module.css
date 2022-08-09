@@ -1,0 +1,36 @@
+.header {
+	width:  1920px;
+	height: 88px;
+	background-color: #1C1C21;
+	display:  flex;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+}
+
+.container {
+	width: 1280px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	list-style: none;
+}
+
+.burger {
+	display:  flex;
+}
+
+.list {
+	display:  flex;
+	flex-grow: 4;
+}
+
+.profile {
+	display:  flex;
+}
+
+.logo {
+	display:  flex;
+	flex-grow: 9;
+
+}

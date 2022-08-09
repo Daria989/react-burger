@@ -1,0 +1,42 @@
+.container {
+	box-sizing: border-box;
+	display:  flex;
+	flex-direction: column;
+	width: 600px;
+	height: 912px;
+}
+
+.content {
+	overflow-y: scroll;
+	overflow-x:hidden;
+}
+
+.content::-webkit-scrollbar {
+	width: 8px;
+	background-color: #2F2F37;
+}
+
+.content::-webkit-scrollbar-thumb {
+    background-color: #8585AD;
+    height: 492px;
+}
+
+.content::-webkit-scrollbar-track {
+	height: 664px;
+}
+
+.header {
+	font-weight: 700;
+	font-size: 36px;
+	line-height: 40px;
+	margin-top: 40px;
+	margin-bottom: 20px;
+}
+
+.tabs {
+	display: flex;
+}
+
+.link {
+	text-decoration: none;
+}
