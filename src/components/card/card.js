@@ -2,7 +2,6 @@ import card from './card.module.css';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
 function Card(props) {
-
   return (
       <div className={`m-3 ${card.item}`}>
         <div className={card.image}><img src={props.image} alt="картинка"/></div>

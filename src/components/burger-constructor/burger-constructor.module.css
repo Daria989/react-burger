@@ -19,7 +19,7 @@
 
 .box::-webkit-scrollbar-thumb {
     background-color: #8585AD;
-    height: 492px;
+    height: 300px;
 }
 
 .box::-webkit-scrollbar-track {

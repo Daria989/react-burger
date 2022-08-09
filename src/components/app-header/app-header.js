@@ -2,8 +2,6 @@ import { Logo } from '@ya.praktikum/react-developer-burger-ui-components'
 import { BurgerIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import { ProfileIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import { ListIcon } from '@ya.praktikum/react-developer-burger-ui-components'
-import { Typography } from '@ya.praktikum/react-developer-burger-ui-components'
-import { Box } from '@ya.praktikum/react-developer-burger-ui-components'
 import appHeader from './app-header.module.css';
 import {useState} from 'react';
 

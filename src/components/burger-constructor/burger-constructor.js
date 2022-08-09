@@ -3,8 +3,23 @@ import {ConstructorElement} from '@ya.praktikum/react-developer-burger-ui-compon
 import {DragIcon} from '@ya.praktikum/react-developer-burger-ui-components'
 import {Button} from '@ya.praktikum/react-developer-burger-ui-components'
 import {CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components'
-import {Typography} from '@ya.praktikum/react-developer-burger-ui-components'
 
+function priceSumm(arr) {
+  return arr.map(obj => obj.price).reduce((previousValue, currentValue) => previousValue + currentValue, 0)
+}
+
+function constractorElement(arr) {
+  return arr.slice(1).map(obj =>
+    <div key={obj._id} className={`mb-4 mr-2 ${burgerConstructor.element}`}>
+      <DragIcon />
+      <ConstructorElement
+        text={obj.name}
+        price={obj.price}
+        thumbnail={obj.image}
+      />
+    </div>
+  )
+}
 
 function BurgerConstructor(props) {
   let data = props.props;
@@ -22,16 +37,7 @@ function BurgerConstructor(props) {
             />
           </div>
           <div className={burgerConstructor.box}>
-            { data.slice(1).map(obj =>
-              <div key={obj._id} className={`mb-4 mr-2 ${burgerConstructor.element}`}>
-                <DragIcon />
-                <ConstructorElement
-                  text={obj.name}
-                  price={obj.price}
-                  thumbnail={obj.image}
-                />
-              </div>
-            )}
+            {constractorElement(data)}
           </div>
           <div className={`pl-7 ${burgerConstructor.element}`}>
             <ConstructorElement
@@ -45,7 +51,7 @@ function BurgerConstructor(props) {
       </div>
       <div className={`mt-10 ${burgerConstructor.button}`}>
         <div className={`text text_type_digits-medium ${burgerConstructor.summ}`}>
-          {data.map(obj => obj.price).reduce((previousValue, currentValue) => previousValue + currentValue, 0)}
+          {priceSumm(data)}
         </div>
         <CurrencyIcon type="primary" />
         <Button type="primary" size="medium">
