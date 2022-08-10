@@ -3,7 +3,7 @@ import ingredient from './ingredient.module.css';
 
 function cardItem (arr) {
   return arr.data.filter(obj => obj.type == arr.id).map(obj =>
-    <Card key={obj._id} price={obj.price} name={obj.name} image={obj.image}/>
+    <Card key={obj._id} data = {obj}/>
     )
 }
 

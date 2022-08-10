@@ -23,3 +23,30 @@
 	width: 100%;
 	height: 48px;
 }
+
+.details {
+	display: flex;
+	justify-content: space-between;
+	width: 640px;
+	height: 64px;
+}
+
+.modalImage{
+	width: 480px;
+	height: 240px;
+}
+
+.composition {
+	width: 540px;
+	height: 56px;
+	display: flex;
+	justify-content: space-between;
+	color: #8585AD;
+}
+
+.compositionItem {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
