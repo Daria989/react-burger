@@ -1,8 +1,9 @@
 import Card from '../card/card';
 import ingredient from './ingredient.module.css';
+import PropTypes from 'prop-types';
 
-function cardItem (arr) {
-  return arr.data.filter(obj => obj.type == arr.id).map(obj =>
+function cardItem(arr) {
+  return arr.data.filter(obj => obj.type === arr.id).map(obj =>
     <Card key={obj._id} data = {obj}/>
     )
 }
@@ -18,5 +19,10 @@ function Ingredient(props) {
     </>
   );
 };
+
+Ingredient.propTypes = {
+  id: PropTypes.string,
+  type: PropTypes.string
+}; 
 
 export default Ingredient;

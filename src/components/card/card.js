@@ -2,7 +2,8 @@ import card from './card.module.css';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import Modal from "../modal/modal";
 import {useState} from 'react';
-import {CloseIcon} from '@ya.praktikum/react-developer-burger-ui-components';
+import PropTypes from 'prop-types';
+import IngredientDetails from "../ingredient-details/ingredient-details";
 
 function Card(props) {
   props = props.data;
@@ -17,36 +18,25 @@ function Card(props) {
         </div>
         <div className={`${card.name} text text_type_main-default`}>{props.name}</div>
       </div>
-      <Modal active={modalActive} setActive={setModalActive}>
-        <div className={`ml-10 mt-10 mr-10 text text_type_main-large ${card.details}`}>
-          <p>Детали ингредиента</p>
-          <CloseIcon type="primary" onClick={() =>setModalActive(false)}/>
-        </div>
-        <div className={card.modalImage}>
-          <img src={props.image_large} alt="картинка"/>
-        </div>
-        <div className={"text text_type_main-medium mt-4"}>{props.name}</div>
-        <div className={`mb-15 mt-8 className="text text_type_main-small ${card.composition}`}>
-          <div className={card.compositionItem}>
-            <p>Калории, ккал</p>
-            {props.calories}
-          </div>
-          <div className={card.compositionItem}>
-            <p>Белки, г</p>
-            {props.proteins}
-          </div>
-          <div className={card.compositionItem}>
-            <p>Жиры, г</p>
-            {props.fat}
-          </div>
-          <div className={card.compositionItem}>
-            <p>Углеводы, г</p>
-            {props.carbohydrates}
-          </div>
-        </div>
-      </Modal>
+      {modalActive &&
+        <Modal setActive={setModalActive} header='Детали ингредиента'>
+          <div className={`ml-10 mt-10 mr-10 text text_type_main-large ${card.details}`}/>
+          <IngredientDetails props={props}/>
+        </Modal>
+      }
     </>
   );
 };
+
+Card.propTypes = {
+  image: PropTypes.string, 
+  price: PropTypes.number,
+  name: PropTypes.string,
+  image_large: PropTypes.string, 
+  calories: PropTypes.number,
+  proteins: PropTypes.number,
+  fat: PropTypes.number,
+  carbohydrates: PropTypes.number
+}; 
 
 export default Card;

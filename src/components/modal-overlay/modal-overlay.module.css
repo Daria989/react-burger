@@ -1,0 +1,11 @@
+.overlay {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    inset: 0;
+    background-color: #1C1C21;
+    opacity: 60%;
+    overflow: hidden;
+}

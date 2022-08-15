@@ -1,4 +1,3 @@
-import React from 'react';
 import burgerIngredients from './burger-ingredients.module.css';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import {useState} from 'react';
@@ -7,7 +6,6 @@ import Ingredient from '../ingredient/ingredient';
 function BurgerIngredients(props) {
   const [current, setCurrent] = useState('one');
   let data = props.props;
-
 
   return (
     <div className={burgerIngredients.container}>

@@ -39,19 +39,11 @@
 	align-items: center;
 }
 
-.image {
-    width: 120px;
-    height: 120px;
-}
-
 .closeIcon {
     height: 64px;
     align-self: flex-end;
 }
 
-.text {
-    color: #8585AD;
-}
 
 
 
