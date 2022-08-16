@@ -1,10 +1,15 @@
 import modalOverlay from './modal-overlay.module.css';
+import {SetActive} from 'prop-types';
 
 function ModalOverlay({setActive}) {
 
     return (
         <div onClick={() => setActive(false)} className = {modalOverlay.overlay}/>
     )
+}
+
+ModalOverlay.propTypes = {
+    setActive: SetActive
 }
 
 export default ModalOverlay;

@@ -16,6 +16,10 @@
 	list-style: none;
 }
 
+.container a {
+	text-decoration: none;
+}
+
 .burger {
 	display:  flex;
 }

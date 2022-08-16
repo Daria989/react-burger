@@ -5,8 +5,8 @@ import {Button} from '@ya.praktikum/react-developer-burger-ui-components'
 import {CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components'
 import Modal from "../modal/modal";
 import {useState} from 'react';
-import PropTypes from 'prop-types';
 import OrderDetails from "../order-details/order-details";
+import {IngredientsType} from '../../utils/types'
 
 function priceSumm(arr) {
   return arr.map(obj => obj.price).reduce((previousValue, currentValue) => previousValue + currentValue, 0)
@@ -25,8 +25,7 @@ function constructorElement(arr) {
   )
 }
 
-function BurgerConstructor(props) {
-  let data = props.props;
+function BurgerConstructor({ingredients}) {
   const [modalActive, setModalActive] = useState(false);
 
   return (
@@ -36,27 +35,27 @@ function BurgerConstructor(props) {
             <ConstructorElement
               type="top"
               isLocked={true}
-              text={`${data[0].name} (верх)`}
+              text={`${ingredients[0].name} (верх)`}
               price={200}
-              thumbnail={data[0].image}
+              thumbnail={ingredients[0].image}
             />
           </div>
           <div className={burgerConstructor.box}>
-            {constructorElement(data)}
+            {constructorElement(ingredients)}
           </div>
           <div className={`pl-7 ${burgerConstructor.element}`}>
             <ConstructorElement
               type="bottom"
               isLocked={true}
-              text={`${data[0].name} (низ)`}
+              text={`${ingredients[0].name} (низ)`}
               price={200}
-              thumbnail={data[0].image}
+              thumbnail={ingredients[0].image}
             />
           </div>
       </div>
       <div className={`mt-10 ${burgerConstructor.button}`}>
         <div className={`text text_type_digits-medium ${burgerConstructor.summ}`}>
-          {priceSumm(data)}
+          {priceSumm(ingredients)}
         </div>
         <CurrencyIcon type="primary" />
         <Button type="primary" size="medium" onClick={() => {console.log(modalActive); setModalActive(true)}}>
@@ -73,8 +72,7 @@ function BurgerConstructor(props) {
 }
 
 BurgerConstructor.propTypes = {
-  image: PropTypes.string, 
-  name: PropTypes.string
-}; 
+  ingredients: IngredientsType
+}
 
 export default BurgerConstructor;

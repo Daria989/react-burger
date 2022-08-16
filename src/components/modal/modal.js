@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import popup from './modal.module.css';
 import {CloseIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import ModalOverlay from '../modal-overlay/modal-overlay';
+import PropTypes from 'react';
+import {SetActive} from '../../utils/types';
 
 const modalRoot = document.getElementById("react-modals");
 
@@ -15,7 +17,7 @@ function Modal({children, header, setActive}) {
         return () => {
             document.body.removeEventListener('keydown', onEscapeEvent)
         }
-    }, [setActive])
+    }, [])
 
     return ReactDOM.createPortal(
         <>
@@ -32,6 +34,12 @@ function Modal({children, header, setActive}) {
         </>,
         modalRoot
     )
+}
+
+Modal.propTypes = {
+    children: PropTypes.node,
+    header: PropTypes.string,
+    setActive: SetActive
 }
 
 export default Modal;

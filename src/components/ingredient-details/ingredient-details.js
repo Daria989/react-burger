@@ -1,31 +1,31 @@
 import ingredientDetails from './ingredient-details.module.css';
-import PropTypes from 'prop-types';
+import {DetailsTypes} from '../../utils/types';
 
-function IngredientDetails(props) {
-    props = props.props;
-    
+function IngredientDetails({details}) {
+    let {name, calories, proteins, fat, carbohydrates, image_large} = details;
+
     return (
         <>
             <div className={ingredientDetails.modalImage}>
-                <img src={props.image_large} alt="картинка"/>
+                <img src={image_large} alt="картинка"/>
             </div>
-            <div className={"text text_type_main-medium mt-4"}>{props.name}</div>
+            <div className={"text text_type_main-medium mt-4"}>{name}</div>
             <div className={`mb-15 mt-8 className="text text_type_main-small ${ingredientDetails.composition}`}>
                 <div className={ingredientDetails.compositionItem}>
                     <p>Калории, ккал</p>
-                    {props.calories}
+                    {calories}
                 </div>
                 <div className={ingredientDetails.compositionItem}>
                     <p>Белки, г</p>
-                    {props.proteins}
+                    {proteins}
                 </div>
                 <div className={ingredientDetails.compositionItem}>
                     <p>Жиры, г</p>
-                    {props.fat}
+                    {fat}
                 </div>
                 <div className={ingredientDetails.compositionItem}>
                     <p>Углеводы, г</p>
-                    {props.carbohydrates}
+                    {carbohydrates}
                 </div>
             </div>
         </>
@@ -33,12 +33,7 @@ function IngredientDetails(props) {
 }
 
 IngredientDetails.propTypes = {
-    name: PropTypes.string,
-    image_large: PropTypes.string, 
-    calories: PropTypes.number,
-    proteins: PropTypes.number,
-    fat: PropTypes.number,
-    carbohydrates: PropTypes.number
-  }; 
+    details: DetailsTypes
+}; 
 
 export default IngredientDetails;
