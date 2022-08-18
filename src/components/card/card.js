@@ -30,7 +30,7 @@ function Card({description}) {
 };
 
 Card.propTypes = {
-  description: DescriptionType
+  description: DescriptionType.isRequired
 }; 
 
 export default Card;

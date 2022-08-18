@@ -1,5 +1,5 @@
 import modalOverlay from './modal-overlay.module.css';
-import {SetActive} from 'prop-types';
+import {SetActive} from '../../utils/types';
 
 function ModalOverlay({setActive}) {
 
@@ -9,7 +9,7 @@ function ModalOverlay({setActive}) {
 }
 
 ModalOverlay.propTypes = {
-    setActive: SetActive
+    setActive: SetActive.isRequired
 }
 
 export default ModalOverlay;

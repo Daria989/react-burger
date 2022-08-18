@@ -31,7 +31,7 @@ function BurgerIngredients({ingredients}) {
 }
 
 BurgerIngredients.propTypes = {
-  ingredients: IngredientsType
+  ingredients: IngredientsType.isRequired
 }
 
 export default BurgerIngredients;

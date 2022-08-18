@@ -20,9 +20,9 @@ function Ingredient({id, type, list}) {
 };
 
 Ingredient.propTypes = {
-  id: PropTypes.string,
-  type: PropTypes.string,
-  list: IngredientsType
+  id: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  list: IngredientsType.isRequired
 }; 
 
 export default Ingredient;

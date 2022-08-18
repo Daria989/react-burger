@@ -10,7 +10,7 @@ const checkReponse = (res) => {
   return res.ok ? res.json() : res.json().then((error) => Promise.reject(error));
 };
 
-async function fetchMyAPI() {
+async function fetchIngredients() {
   return fetch(`${BURGER_API_URL}/ingredients`)
     .then(checkReponse)
     .then((data) => {
@@ -23,9 +23,9 @@ function App() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetchMyAPI()
+    fetchIngredients()
       .then(result => setData(result),
-            error => console.log(error))
+            error => setData(error))
   }, [])
 
   return (
