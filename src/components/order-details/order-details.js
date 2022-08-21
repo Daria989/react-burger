@@ -1,11 +1,7 @@
 import done from '../../images/done.png';
 import orderDetails from './order-details.module.css';
-import { OrderContext } from '../../services/orderContext.js';
-import { useContext } from 'react';
-
-function OrderDetails() {
-    const res = useContext(OrderContext);
-
+import PropTypes from 'prop-types';
+function OrderDetails({res}) {
     return (
         <>
             <div className={`mr-25 ml-25 mt-4 mb-8 text text_type_digits-large`}>{res}</div>
@@ -18,5 +14,9 @@ function OrderDetails() {
         </>
     )
 }
+
+OrderDetails.propTypes = {
+    res: PropTypes.number.isRequired
+  }; 
 
 export default OrderDetails;
