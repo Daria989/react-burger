@@ -45,7 +45,7 @@ function AppHeader() {
   };
 
   return (
-    <nav className={`${appHeader.header}`}>
+    <header className={`${appHeader.header}`}>
       <ul className={appHeader.container}>
         <li className={`${appHeader.burger} pl-5 pr-5 pb-4 pt-4 mr-2`} onMouseOver={handleMouseBurgerOver} onMouseOut={handleMouseBurgerOut}>
           <a href="#">
@@ -71,7 +71,7 @@ function AppHeader() {
           </a>
         </li>
       </ul>
-   </nav>
+   </header>
   );
 }
 

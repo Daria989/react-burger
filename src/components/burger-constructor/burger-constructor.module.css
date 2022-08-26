@@ -44,6 +44,10 @@
     align-self: flex-end;
 }
 
-
+.burger {
+	display: 'flex'; 
+	flex-direction: 'column'; 
+	gap: '10px';
+}
 
 

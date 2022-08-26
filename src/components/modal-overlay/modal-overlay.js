@@ -9,7 +9,7 @@ function ModalOverlay({setActive}) {
 }
 
 ModalOverlay.propTypes = {
-    setActive: SetActive.isRequired
+    setActive: SetActive
 }
 
 export default ModalOverlay;

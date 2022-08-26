@@ -1,13 +1,13 @@
 import ingredientDetails from './ingredient-details.module.css';
 import {DetailsTypes} from '../../utils/types';
 
-function IngredientDetails({details}) {
-    let {name, calories, proteins, fat, carbohydrates, image_large} = details;
+function IngredientDetails({name, details}) {
+    let {calories, proteins, fat, carbohydrates, image_large} = details;
 
     return (
         <>
             <div className={ingredientDetails.modalImage}>
-                <img src={image_large} alt="картинка"/>
+                <img src={image_large} alt={name}/>
             </div>
             <div className={"text text_type_main-medium mt-4"}>{name}</div>
             <div className={`mb-15 mt-8 className="text text_type_main-small ${ingredientDetails.composition}`}>

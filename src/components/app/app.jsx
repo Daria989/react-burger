@@ -1,31 +1,18 @@
-import app from'./app.module.css';
+import { apiGetIngredients } from '../../api';
+import app from './app.module.css';
 import AppHeader from '../app-header/app-header'
 import BurgerIngredients from '../burger-ingredients/burger-ingredients'
 import BurgerConstructor from '../burger-constructor/burger-constructor'
-import {useState, useEffect} from 'react'
-
-const BURGER_API_URL = "https://norma.nomoreparties.space/api"
-
-const checkReponse = (res) => {
-  return res.ok ? res.json() : res.json().then((error) => Promise.reject(error));
-};
-
-async function fetchIngredients() {
-  return fetch(`${BURGER_API_URL}/ingredients`)
-    .then(checkReponse)
-    .then((data) => {
-      if (data?.success) return data.data;
-      return Promise.reject(data);
-    });
-}
+import { useState, useEffect } from 'react';
+import { DataContext } from '../../services/dataContext.js';
 
 function App() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetchIngredients()
-      .then(result => setData(result),
-            error => setData(error))
+    apiGetIngredients()
+      .then(result => setData(result))
+      .catch((error) => setData(error));
   }, [])
 
   return (
@@ -34,8 +21,10 @@ function App() {
       <div className={app.app}>
         <AppHeader />
           <main className={`mt-20 ${app.main}`}>
-            <BurgerIngredients ingredients={data}/>
-            <BurgerConstructor ingredients={data}/>
+            <DataContext.Provider value={data}>
+              <BurgerIngredients/>
+              <BurgerConstructor />
+            </DataContext.Provider>
           </main>
       </div>
     }

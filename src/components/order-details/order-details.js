@@ -1,11 +1,10 @@
 import done from '../../images/done.png';
 import orderDetails from './order-details.module.css';
-
-function OrderDetails() {
-
+import PropTypes from 'prop-types';
+function OrderDetails({res}) {
     return (
         <>
-            <div className={`mr-25 ml-25 mt-4 mb-8 text text_type_digits-large`}>034536</div>
+            <div className={`mr-25 ml-25 mt-4 mb-8 text text_type_digits-large`}>{res}</div>
             <div className={`mb-15 text text_type_main-medium`}>идентификатор заказа</div>
             <div className={`mb-15 ${orderDetails.image}`}>
                 <img src={done} alt="done"></img>
@@ -15,5 +14,9 @@ function OrderDetails() {
         </>
     )
 }
+
+OrderDetails.propTypes = {
+    res: PropTypes.number.isRequired
+  }; 
 
 export default OrderDetails;
