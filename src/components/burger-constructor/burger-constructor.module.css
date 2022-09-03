@@ -26,12 +26,6 @@
 	height: 100px;
 }
 
-.element {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-}
-
 .button {
 	width: 373px;
 	display: flex;
@@ -49,5 +43,3 @@
 	flex-direction: 'column'; 
 	gap: '10px';
 }
-
-

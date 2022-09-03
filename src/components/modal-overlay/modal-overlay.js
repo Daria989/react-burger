@@ -1,15 +1,10 @@
 import modalOverlay from './modal-overlay.module.css';
-import {SetActive} from '../../utils/types';
 
-function ModalOverlay({setActive}) {
+function ModalOverlay({closeDetails}) {
 
     return (
-        <div onClick={() => setActive(false)} className = {modalOverlay.overlay}/>
+        <div onClick={() => closeDetails()} className = {modalOverlay.overlay}/>
     )
-}
-
-ModalOverlay.propTypes = {
-    setActive: SetActive
 }
 
 export default ModalOverlay;
