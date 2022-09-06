@@ -35,7 +35,7 @@ function ConstructorItem({item, index, moveCard, handleClose}) {
         return;
       }
       moveCard(dragIndex, hoverIndex);
-      monitor.item.index = hoverIndex;
+      item.index = hoverIndex;
     }
   })
   
