@@ -4,19 +4,10 @@ import popup from './modal.module.css';
 import {CloseIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import ModalOverlay from '../modal-overlay/modal-overlay';
 import PropTypes from 'prop-types';
-import {SetActive} from '../../utils/types';
-import { useDispatch} from 'react-redux';
-import { deleteIngredientDetails } from '../../services/actions/actions';
 
 const modalRoot = document.getElementById("react-modals");
 
-function Modal({children, header, setActive}) {
-    const dispatch = useDispatch();
-
-    function closeDetails() {
-        setActive(false);
-        dispatch(deleteIngredientDetails({}))
-    }
+function Modal({children, header, closeDetails}) {
 
     useEffect(() => {
         const onEscapeEvent = e => e.key === "Escape" ? closeDetails() : null
@@ -47,7 +38,7 @@ function Modal({children, header, setActive}) {
 Modal.propTypes = {
     children: PropTypes.node.isRequired,
     header: PropTypes.string.isRequired,
-    setActive: SetActive
+    closeDetails: PropTypes.func.isRequired
 }
 
 export default Modal;

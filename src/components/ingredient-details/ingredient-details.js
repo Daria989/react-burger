@@ -1,4 +1,5 @@
 import ingredientDetails from './ingredient-details.module.css';
+import PropTypes from 'prop-types';
 import {DetailsTypes} from '../../utils/types';
 
 function IngredientDetails({name, details}) {
@@ -33,6 +34,7 @@ function IngredientDetails({name, details}) {
 }
 
 IngredientDetails.propTypes = {
+    name: PropTypes.string.isRequired,
     details: DetailsTypes.isRequired
 }; 
 

@@ -43,3 +43,16 @@
 	flex-direction: 'column'; 
 	gap: '10px';
 }
+
+.empty_burger {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align:  center;
+}
+
+.empty_container {
+	display: flex;
+	width: 600px;
+	height: 656px;
+}

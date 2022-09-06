@@ -9,6 +9,7 @@ import { getIngredientDetails } from '../../services/actions/actions';
 import { useDrag } from "react-dnd";
 import { Counter } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useSelector } from 'react-redux';
+import { deleteIngredientDetails } from '../../services/actions/actions';
 
 function Card({description}) {
   const data = useSelector(store => store.addConstructorList.data);
@@ -22,15 +23,19 @@ function Card({description}) {
     collect: monitor => ({
       opacity: monitor.isDragging() ? 0.5 : 1
     })
-});
+  });
 
   function getDetails() {
     setModalActive(true);
     dispatch(getIngredientDetails(description));
   }
 
-   const counter = data.filter(element => element.type !== "bun").filter(element => element.name === name).length
+  const counter = data.filter(element => element.type !== "bun").filter(element => element.name === name).length
 
+  function closeDetails() {
+    setModalActive(false);
+    dispatch(deleteIngredientDetails({}))
+  }
 
   return (
     <>
@@ -46,7 +51,7 @@ function Card({description}) {
         <div className={`${card.name} text text_type_main-default`}>{name}</div>
       </div>
       {modalActive &&
-        <Modal setActive={setModalActive} header='Детали ингредиента'>
+        <Modal closeDetails={closeDetails} header='Детали ингредиента'>
           <div className={`ml-10 mt-10 mr-10 text text_type_main-large ${details}`}/>
           <IngredientDetails name={name} details={details}/>
         </Modal>

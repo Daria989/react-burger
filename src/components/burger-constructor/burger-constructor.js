@@ -12,11 +12,10 @@ import { useDrop} from 'react-dnd';
 import uuid from 'react-uuid';
 import { useDispatch } from 'react-redux';
 
-
 function BurgerConstructor() {
   const [modalActive, setModalActive] = useState(false);
   const data = useSelector(store => store.addConstructorList.data);
-  const ingredientData = useSelector(store => store.addIngredientsList.data);
+
   const res = useSelector(store => store.addOrderDetails.data.order.number);
   const dispatch = useDispatch();
 
@@ -31,19 +30,16 @@ function BurgerConstructor() {
     }
   });
 
-  const arrOffIngredients = getArrOfIngredients(ingredientData);
-  const newArr = arrOffIngredients.map(obj => ({...obj, dragId: uuid()}))
-  
-  useEffect(() => {
-    dispatch(getConstructorData(newArr)) 
-  }, []);
-
   function findNotBun(arr) {
     return arr.filter(obj => obj.type !== 'bun');
   }
 
   function findBun(arr) {
-    return arr.find((element) => element.type === 'bun');
+    const bun = arr.find((element) => element.type === 'bun')
+    if (bun === undefined)
+      return [];
+    else
+      return [bun]
   }
 
   function getArrOfIngredients(arr) {
@@ -66,6 +62,10 @@ function BurgerConstructor() {
     dispatch(getOrderDetails(obj));
    }
 
+   function closeDetails() {
+    setModalActive(false);
+  }
+
   const moveCard = useCallback((dragIndex, hoverIndex) => {
     const dragCard = data[dragIndex];
     const newCards = [...data];
@@ -76,31 +76,39 @@ function BurgerConstructor() {
 
   return (
     <>
-      { data.length > 0 &&
+      { data.length > 0 ?
       <div className={`mt-25 pl-4 ${burgerConstructor.container}`}>
-          <div ref={dropTargetRef} className={burgerConstructor.burger}>
+          <div ref={dropTargetRef} className={`text text_type_main-medium ${burgerConstructor.burger}`}>
               <div className={`mb-4 mr-2 pl-7 ${burgerConstructor.element}`}>
+                {findBun(data).length > 0?
                 <ConstructorElement
                   type="top"
                   isLocked={true}
-                  text={`${findBun(data).name} (верх)`}
-                  price={findBun(data).price}
-                  thumbnail={findBun(data).image}
+                  text={`${findBun(data)[0].name} (верх)`}
+                  price={findBun(data)[0].price}
+                  thumbnail={findBun(data)[0].image}
                 />
+                : <p>Выберите булку</p>
+                }
               </div>
+            
               <div className={burgerConstructor.box}>
                 {findNotBun(data).map((item, index) =>
-                  <ConstructorItem item={item} index={index} key={item.dragId} moveCard={moveCard} handleClose={() => handleClose(item._id)}/>
+                    <ConstructorItem item={item} index={index} key={item.dragId} moveCard={moveCard} handleClose={() => handleClose(item.dragId)}/>
                   )}
               </div>
+
               <div className={`mt-2 pl-7 ${burgerConstructor.element}`}>
+                {findBun(data).length > 0 ?
                 <ConstructorElement
                   type="bottom"
                   isLocked={true}
-                  text={`${findBun(data).name} (низ)`}
-                  price={findBun(data).price}
-                  thumbnail={findBun(data).image}
+                  text={`${findBun(data)[0].name} (низ)`}
+                  price={findBun(data)[0].price}
+                  thumbnail={findBun(data)[0].image}
                 />
+                : ''
+                }
               </div>
           </div>
           <div className={`mt-10 ${burgerConstructor.button}`}>
@@ -108,14 +116,26 @@ function BurgerConstructor() {
               {priceSum(data)}
             </div>
             <CurrencyIcon type="primary" />
+            {findBun(data).length > 0 ?
             <Button type="primary" size="medium" onClick={placeOrder}>
               Оформить заказ
             </Button>
-            {modalActive &&
-            <Modal setActive={setModalActive} header = {''}>
-                  <OrderDetails res={res}/>
-              </Modal>
+            :
+            <Button type="primary" disabled  size="medium" onClick={placeOrder}>
+              Оформить заказ
+            </Button>
             }
+            {modalActive &&
+            <Modal closeDetails={closeDetails} header = {''}>
+                  <OrderDetails res={res}/>
+            </Modal>
+            }
+          </div>
+        </div>
+        :
+        <div className={`mt-25 pl-4 ${burgerConstructor.empty_container}`}>
+          <div ref={dropTargetRef} className={`text text_type_main-medium ${burgerConstructor.empty_burger}`}>
+            <p>Пожалуйста, перенесите сюда булку и ингредиенты для создания заказа</p>
           </div>
         </div>
         }

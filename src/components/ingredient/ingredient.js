@@ -24,7 +24,8 @@ function Ingredient({id, innerRef, type}) {
 
 Ingredient.propTypes = {
   id: PropTypes.string.isRequired,
+  innerRef: PropTypes.object.isRequired,
   type: PropTypes.string.isRequired,
-}; 
+};
 
 export default Ingredient;

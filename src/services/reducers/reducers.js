@@ -88,10 +88,9 @@ import {
       }
       case ADD_CONSTRUCTOR_ELEMENT: {
         if (action.data.type === 'bun') {
-          const arr = state.data.filter(element => element.type !== "bun");
           return {
             data: [
-            ...arr, action.data, action.data
+            ...state.data.filter(element => element.type !== "bun"), action.data, action.data
           ]}
         } else 
           return {
@@ -100,7 +99,7 @@ import {
             ]}
       }
       case DELETE_CONSTRUCTOR_ELEMENT: {
-       const arr = state.data.filter(element => element._id !== action.data);
+       const arr = state.data.filter(element => element.dragId !== action.data);
         return { 
           data: arr
         }
