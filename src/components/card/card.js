@@ -13,7 +13,7 @@ import { deleteIngredientDetails } from '../../services/actions/actions';
 
 function Card({description}) {
   const data = useSelector(store => store.addConstructorList.data);
-  const {name, price, image, id, ...details} = description;
+  const {name, type, price, image, id, ...details} = description;
   const [modalActive, setModalActive] = useState(false);
   const dispatch = useDispatch();
 
@@ -30,7 +30,8 @@ function Card({description}) {
     dispatch(getIngredientDetails(description));
   }
 
-  const counter = data.filter(element => element.type !== "bun").filter(element => element.name === name).length
+  let counter = data.filter(element => element.name === name).length
+  if (type === 'bun') counter--;
 
   function closeDetails() {
     setModalActive(false);
