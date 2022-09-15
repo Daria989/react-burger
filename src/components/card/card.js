@@ -1,18 +1,50 @@
 import card from './card.module.css';
-import {CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
+import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import Modal from "../modal/modal";
-import {useState} from 'react';
+import { useState } from 'react';
 import IngredientDetails from "../ingredient-details/ingredient-details";
-import {DescriptionType} from '../../utils/types'
+import { DescriptionType } from '../../utils/types'
+import { useDispatch} from 'react-redux';
+import { getIngredientDetails } from '../../services/actions/actions';
+import { useDrag } from "react-dnd";
+import { Counter } from '@ya.praktikum/react-developer-burger-ui-components';
+import { useSelector } from 'react-redux';
+import { deleteIngredientDetails } from '../../services/actions/actions';
 
 function Card({description}) {
-  let {name, price, image, ...details} = description;
+  const data = useSelector(store => store.addConstructorList.data);
+  const {name, type, price, image, id, ...details} = description;
   const [modalActive, setModalActive] = useState(false);
+  const dispatch = useDispatch();
+
+  const [{opacity}, ref] = useDrag({
+    type: "ingredient",
+    item: description,
+    collect: monitor => ({
+      opacity: monitor.isDragging() ? 0.5 : 1
+    })
+  });
+
+  function getDetails() {
+    setModalActive(true);
+    dispatch(getIngredientDetails(description));
+  }
+
+  let counter = data.filter(element => element.name === name).length
+  if (type === 'bun') counter--;
+
+  function closeDetails() {
+    setModalActive(false);
+    dispatch(deleteIngredientDetails({}))
+  }
 
   return (
     <>
-      <div onClick={() => setModalActive(true)} className={`m-3 ${card.item}`}>
-        <div className={card.image}><img src={image} alt={card.name}/></div>
+      <div onClick={getDetails} ref = {ref} style={{ opacity }} className={`m-3 ${card.item}`}>
+        <div className={card.image}>
+          <img src={image} alt={card.name}/>
+          {counter > 0? <Counter count={counter} size="small" /> : null}
+        </div>
         <div className={`mt-1 mb-1 ${card.price}`}>
           <p className={'mr-2 text text_type_digits-default'}>{price}</p>
           <CurrencyIcon type="primary"/>
@@ -20,7 +52,7 @@ function Card({description}) {
         <div className={`${card.name} text text_type_main-default`}>{name}</div>
       </div>
       {modalActive &&
-        <Modal setActive={setModalActive} header='Детали ингредиента'>
+        <Modal closeDetails={closeDetails} header='Детали ингредиента'>
           <div className={`ml-10 mt-10 mr-10 text text_type_main-large ${details}`}/>
           <IngredientDetails name={name} details={details}/>
         </Modal>
