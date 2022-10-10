@@ -4,8 +4,12 @@ import {ProfileIcon} from '@ya.praktikum/react-developer-burger-ui-components'
 import {ListIcon} from '@ya.praktikum/react-developer-burger-ui-components'
 import appHeader from './app-header.module.css';
 import {useState} from 'react';
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function AppHeader() {
+  const user = useSelector((store) => store.authReducer.name);
+  const token = localStorage.getItem('refreshToken');
 
   const [isBurgerHovering, setBurgerIsHovering] = useState("secondary");
   const [isListIconHovering, setListIconIsHovering] = useState("secondary");
@@ -48,27 +52,30 @@ function AppHeader() {
     <header className={`${appHeader.header}`}>
       <ul className={appHeader.container}>
         <li className={`${appHeader.burger} pl-5 pr-5 pb-4 pt-4 mr-2`} onMouseOver={handleMouseBurgerOver} onMouseOut={handleMouseBurgerOut}>
-          <a href="#">
+          <Link to="/">
             <BurgerIcon type={isBurgerHovering}/>
             <span className={isBurgerTextHovering}>Конструктор</span>
-          </a>
+          </Link>
         </li>
     		<li className={`${appHeader.list} pl-5 pr-5 pb-4 pt-4`} onMouseOver={handleMouseListIconOver} onMouseOut={handleMouseListIconOut}>
-          <a href="#">
+          <Link to="/">
             <ListIcon type={isListIconHovering}/>
             <span className={isListIconTextHovering}>Лента заказов</span>
-          </a>
+          </Link>
         </li>
         <li className={appHeader.logo}>
-          <a href="#">
+          <Link to="/">
             <Logo />
-          </a>
+          </Link>
         </li>
         <li className={`${appHeader.profile} pl-5 pr-5 pb-4 pt-4`} onMouseOver={handleMouseProfileIconOver} onMouseOut={handleMouseProfileIconOut}>
-          <a href="#">
+          <Link to="/profile">
             <ProfileIcon type={isProfileIconHovering}/>
-            <span className={isProfileTextIconHovering}>Личный кабинет</span>
-          </a>
+            {user ?  
+              <span className={isProfileTextIconHovering}>{user}</span>
+              :  <span className={isProfileTextIconHovering}>Личный кабинет</span>
+            }
+          </Link>
         </li>
       </ul>
    </header>

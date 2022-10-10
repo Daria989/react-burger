@@ -1,0 +1,44 @@
+.wrapper {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main {
+    height: 320px;
+    display: flex;
+    justify-content: center;
+    margin-top: 180px;
+}
+
+.info {
+    height: 320px;
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.inputs {
+    height: 328px;
+    width: 480px;
+    align-self: start;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.inactiveLink {
+    text-decoration: none;
+}
+
+.activeLink {
+    text-decoration: none;
+    color: #F2F2F3;
+}
+
+.buttons {
+    display: flex;
+}

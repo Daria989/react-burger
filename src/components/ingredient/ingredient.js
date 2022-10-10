@@ -2,15 +2,14 @@ import Card from '../card/card';
 import ingredient from './ingredient.module.css';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-
+import {Link} from "react-router-dom";
 
 function cardItem(id, arr) {
   return arr.filter(obj => obj.type === id)
             .map(obj => <Card key={obj._id} description={obj}/>)
 }
-
 function Ingredient({id, innerRef, type}) {
-  const data = useSelector(store => store.addIngredientsList.data)
+  const data = useSelector(store => store.addIngredientsList.data);
 
   return (
     <>

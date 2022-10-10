@@ -1,7 +1,9 @@
 import done from '../../images/done.png';
 import orderDetails from './order-details.module.css';
-import PropTypes from 'prop-types';
-function OrderDetails({res}) {
+import { useSelector } from 'react-redux';
+
+function OrderDetails() {
+    const res = useSelector(store => store.addOrderDetails.data.order.number);
     return (
         <>
             <div className={`mr-25 ml-25 mt-4 mb-8 text text_type_digits-large`}>{res}</div>
@@ -14,9 +16,5 @@ function OrderDetails({res}) {
         </>
     )
 }
-
-OrderDetails.propTypes = {
-    res: PropTypes.number.isRequired
-}; 
 
 export default OrderDetails;
