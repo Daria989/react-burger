@@ -2,7 +2,7 @@ import card from './card.module.css';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { DescriptionType } from '../../utils/types'
 import { useDispatch} from 'react-redux';
-import { getIngredientDetails } from '../../services/actions/actions';
+import { getIngredientDetails } from '../../services/actions/data-actions';
 import { useDrag } from "react-dnd";
 import { Counter } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useSelector } from 'react-redux';
@@ -32,7 +32,6 @@ function Card({description}) {
   if (type === 'bun') counter--;
 
   return (
-    <>
       <div onClick={getDetails} ref = {ref} style={{ opacity }} className={`m-3 ${card.item}`}>
         <Link 
           to={{
@@ -53,7 +52,6 @@ function Card({description}) {
           </div>
         </Link>
       </div>      
-    </>
   );
 };
 

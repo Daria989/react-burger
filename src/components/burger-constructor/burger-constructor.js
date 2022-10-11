@@ -6,7 +6,7 @@ import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components
 import { useCallback} from 'react';
 import { useSelector } from 'react-redux';
 import {getCookie } from '../../services/cookie';
-import { getOrderDetails, getConstructorData, addConstructorElement, deleteConstructorElement } from '../../services/actions/actions';
+import { getOrderDetails, getConstructorData, addConstructorElement, deleteConstructorElement } from '../../services/actions/data-actions';
 import { useDrop} from 'react-dnd';
 import uuid from 'react-uuid';
 import { useDispatch } from 'react-redux';
@@ -16,10 +16,8 @@ import {useLocation} from "react-router-dom";
 function BurgerConstructor() {
   const data = useSelector(store => store.addConstructorList.data);
 
-  const res = useSelector(store => store.addOrderDetails.data.order.number);
   const user = useSelector((store) => store.authReducer.name);
   const accessToken = getCookie('token');
-  const refreshToken = localStorage.getItem('refreshToken');
   const dispatch = useDispatch();
   const location = useLocation();
   const history = useHistory();
@@ -135,11 +133,6 @@ function BurgerConstructor() {
               Оформить заказ
             </Button>
             }
-            {/* {modalActive &&
-            <Modal closeDetails={closeDetails} header = {''}>
-                  <OrderDetails res={res}/>
-            </Modal>
-            } */}
           </div>
         </div>
         :

@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { useCallback } from 'react';
 import { Redirect } from 'react-router-dom';
-import { getForgotPasswordData } from '../services/actions/actions';
+import { getForgotPasswordData } from '../services/actions/auth-actions';
 
 function ForgotPassword() {
     const dispatch = useDispatch();
@@ -54,10 +54,12 @@ return (
     <div className={forgotPassw.wrapper}>
         <div className={forgotPassw.container}>
             <p className="text text_type_main-medium">Восстановление пароля</p>
-            <Input type={'email'} size="default" value={EmailValue} placeholder={'Email'} onChange={onChangeEmail}/>
-            <Button type="primary" size="medium" onClick={restore}>
-                Восстановить
-            </Button>
+            <form onSubmit={restore} className={forgotPassw.inputs}>
+                <Input type={'email'} size="default" value={EmailValue} placeholder={'Email'} onChange={onChangeEmail}/>
+                <Button type="primary" size="medium">
+                    Восстановить
+                </Button>
+            </form>
             <p className="mt-20 text text_type_main-default">Вспомнили пароль? 
                 <Link to='/login' className={forgotPassw.link}> Войти</Link>
             </p>

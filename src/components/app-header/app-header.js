@@ -9,7 +9,6 @@ import { useSelector } from 'react-redux';
 
 function AppHeader() {
   const user = useSelector((store) => store.authReducer.name);
-  const token = localStorage.getItem('refreshToken');
 
   const [isBurgerHovering, setBurgerIsHovering] = useState("secondary");
   const [isListIconHovering, setListIconIsHovering] = useState("secondary");

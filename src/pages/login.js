@@ -5,7 +5,7 @@ import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { getLoginData } from '../services/actions/actions';
+import { getLoginData } from '../services/actions/auth-actions';
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import {getCookie } from '../services/cookie';
@@ -53,11 +53,11 @@ function Login() {
 return (
     <div className={login.wrapper}>
         <div className={login.container}>
-            <form className={login.form}>
+            <form className={login.form} onSubmit={userAuthorization}>
                 <p className="text text_type_main-medium">Вход</p>
                 <Input type={'email'} size="default" value={EmailValue} placeholder={'Email'} onChange={onChangeEmail}/>
                 <PasswordInput onChange={onChangePassword} size="default" value={PasswordValue} name={'password'}/>
-                <Button type="primary" size="medium" onClick={userAuthorization}> 
+                <Button type="primary" size="medium"> 
                     Войти
                 </Button>
             </form>

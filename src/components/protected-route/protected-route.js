@@ -1,9 +1,10 @@
 import { Route } from 'react-router-dom';
-import { getUserData } from '../../services/actions/actions';
+import { getUserData } from '../../services/actions/auth-actions';
 import { useEffect} from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { Redirect} from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 function ProtectedRoute({ children, ...rest }) {
     
@@ -38,5 +39,10 @@ function ProtectedRoute({ children, ...rest }) {
       />
     );
   } 
+
+ProtectedRoute.propTypes = {
+    children: PropTypes.node.isRequired,
+    rest: PropTypes.string.isRequired
+}
 
 export default ProtectedRoute;

@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { Input } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { getRegisterData } from '../services/actions/actions';
+import { getRegisterData } from '../services/actions/auth-actions';
 import { useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
@@ -59,12 +59,14 @@ return (
     <div className={register.wrapper}>
         <div className={register.container}>
             <p className="text text_type_main-medium">Регистрация</p>
-            <Input type={'text'} size="default" value={nameValue} placeholder={'Имя'}  onChange={onChangeName}/>
-            <Input type={'email'} size="default" value={EmailValue} placeholder={'Email'} onChange={onChangeEmail}/>
-            <PasswordInput onChange={onChangePassword} size="default" value={PasswordValue} name={'password'}/>
-            <Button type="primary" size="medium" onClick={registerNewUser}>
-                Зарегистрироваться
-            </Button>
+            <form onSubmit={registerNewUser} className={register.inputs}>
+                <Input type={'text'} size="default" value={nameValue} placeholder={'Имя'}  onChange={onChangeName}/>
+                <Input type={'email'} size="default" value={EmailValue} placeholder={'Email'} onChange={onChangeEmail}/>
+                <PasswordInput onChange={onChangePassword} size="default" value={PasswordValue} name={'password'}/>
+                <Button type="primary" size="medium">
+                    Зарегистрироваться
+                </Button>
+            </form>
             <p className="mt-20 text text_type_main-default">Уже зарегистрированы? 
             <Link to='/login' className={register.link}> Войти</Link>
             </p>

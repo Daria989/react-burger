@@ -2,7 +2,6 @@ import Card from '../card/card';
 import ingredient from './ingredient.module.css';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import {Link} from "react-router-dom";
 
 function cardItem(id, arr) {
   return arr.filter(obj => obj.type === id)

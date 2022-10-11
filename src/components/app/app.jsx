@@ -11,12 +11,20 @@ import IngredientDetails from '../ingredient-details/ingredient-details';
 import Modal from '../modal/modal';
 import AppHeader from '../app-header/app-header';
 import OrderDetails from "../order-details/order-details";
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { getData } from '../../services/actions/data-actions';
 
 function App() {
   const history = useHistory();
   const location = useLocation();
+  const dispatch = useDispatch();
   const background = location.state && location.state.background;
   const handleModalClose = () => history.goBack();
+
+  useEffect(() => {
+    dispatch(getData());
+  }, [dispatch])
 
   return (
     <>

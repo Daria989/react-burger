@@ -3,7 +3,7 @@ import { Input } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getResetPasswordData} from '../services/actions/actions';
+import { getResetPasswordData} from '../services/actions/auth-actions';
 import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
@@ -53,7 +53,7 @@ function ResetPassword() {
         );
     }
 
-    if (user && !forgotPasswordSuccess) {
+    if (!forgotPasswordSuccess) {
         return (
           <Redirect
             to={{
@@ -80,11 +80,13 @@ return (
     <div className={resetPassw.wrapper}>
         <div className={resetPassw.container}>
             <p className="text text_type_main-medium">Восстановление пароля</p>
-            <Input type={'password'} size="default" value={passwordValue} placeholder={'Введите новый пароль'} onChange={onChangePassword}/>
-            <Input type={"text"} size="default" value={codeValue} placeholder={'Введите код из письма'} onChange={onChangeEmail}/>
-            <Button type="primary" size="medium" onClick={reset}>
-                Сохранить
-            </Button>
+            <form onSubmit={reset}>
+                <Input type={'password'} size="default" value={passwordValue} placeholder={'Введите новый пароль'} onChange={onChangePassword}/>
+                <Input type={"text"} size="default" value={codeValue} placeholder={'Введите код из письма'} onChange={onChangeEmail}/>
+                <Button type="primary" size="medium">
+                    Сохранить
+                </Button>
+            </form>
             <p className="mt-20 text text_type_main-default">Вспомнили пароль? 
             <Link to='/login' className={resetPassw.link}> Войти</Link>
             </p>
