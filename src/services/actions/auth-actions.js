@@ -1,6 +1,6 @@
 import { registerRequest, loginRequest, 
   refreshTokenRequest, logoutRequest, getUserRequest, updateUserRequest, 
-  forgotPasswordRequest, resetRequest } from '../../api';
+  forgotPasswordRequest, resetRequest, checkResponse } from '../../api';
 
 import { setCookie, deleteCookie } from '../cookie';
 
@@ -182,7 +182,8 @@ export function getUpdateUserData(form) {
 			type: GET_UPDATE_USER_REQUEST,
 		});
     updateUserRequest(form)
-    .then (res => res.json())
+    .then(checkResponse)
+    // .then (res => res.json())
     .then (res  => {
       if (res && res.success) {
         dispatch({

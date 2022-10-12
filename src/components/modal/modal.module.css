@@ -3,9 +3,9 @@
 }
 
 .header {
-    position: absolute;
+    position: fixed;
     top: 50px;
-    left: 550px;
+    right: 50px;
     z-index: 1;
 }
 

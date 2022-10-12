@@ -1,8 +1,8 @@
-import {getCookie, setCookie, deleteCookie } from './services/cookie';
+import {getCookie, setCookie} from './services/cookie';
 
 const baseUrl = "https://norma.nomoreparties.space/api";
 
-const checkResponse = (res) => {
+export const checkResponse = (res) => {
   return res.ok ? res.json() : res.json().then((error) => Promise.reject(error));
 };
 
@@ -112,6 +112,7 @@ export const updateUserRequest = (form) => {
     },
     body: JSON.stringify(form),
   })
+  .then(checkResponse)
 };
 
 export const fetchWithRefresh = async(url, options) => {
@@ -130,8 +131,6 @@ export const fetchWithRefresh = async(url, options) => {
 
       return await checkResponse(res);
     } else {
-        // deleteCookie('token');
-        // localStorage.removeItem('refreshToken');
         return Promise.reject(err);
     }
   }

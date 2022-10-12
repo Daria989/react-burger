@@ -16,12 +16,12 @@ function Register() {
 
     const dispatch = useDispatch();
 
-    const [EmailValue, setEmailValue] = useState('');
+    const [emailValue, setEmailValue] = useState('');
     const onChangeEmail = e => {
         setEmailValue(e.target.value)
     }
 
-    const [PasswordValue, setPasswordValue] = useState('');
+    const [passwordValue, setPasswordValue] = useState('');
     const onChangePassword = e => {
         setPasswordValue(e.target.value)
     }
@@ -32,7 +32,7 @@ function Register() {
     }
 
     const registerNewUser = () => {
-        dispatch(getRegisterData(nameValue, EmailValue, PasswordValue));
+        dispatch(getRegisterData(nameValue, emailValue, passwordValue));
     };
 
     if (user || token) {
@@ -61,8 +61,8 @@ return (
             <p className="text text_type_main-medium">Регистрация</p>
             <form onSubmit={registerNewUser} className={register.inputs}>
                 <Input type={'text'} size="default" value={nameValue} placeholder={'Имя'}  onChange={onChangeName}/>
-                <Input type={'email'} size="default" value={EmailValue} placeholder={'Email'} onChange={onChangeEmail}/>
-                <PasswordInput onChange={onChangePassword} size="default" value={PasswordValue} name={'password'}/>
+                <Input type={'email'} size="default" value={emailValue} placeholder={'Email'} onChange={onChangeEmail}/>
+                <PasswordInput onChange={onChangePassword} size="default" value={passwordValue} name={'password'}/>
                 <Button type="primary" size="medium">
                     Зарегистрироваться
                 </Button>

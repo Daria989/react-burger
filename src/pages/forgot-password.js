@@ -13,7 +13,7 @@ function ForgotPassword() {
     const dispatch = useDispatch();
     
 
-    const [EmailValue, setEmailValue] = useState('');
+    const [emailValue, setEmailValue] = useState('');
     const onChangeEmail = e => {
         setEmailValue(e.target.value)
     }
@@ -21,9 +21,9 @@ function ForgotPassword() {
     const restore = useCallback(
         e => {
           e.preventDefault();
-          dispatch(getForgotPasswordData(EmailValue));
+          dispatch(getForgotPasswordData(emailValue));
         },
-        [EmailValue]
+        [emailValue]
     );
 
     const forgotPasswordSuccess = useSelector((store) => store.authReducer.forgotPasswordSuccess);
@@ -55,7 +55,7 @@ return (
         <div className={forgotPassw.container}>
             <p className="text text_type_main-medium">Восстановление пароля</p>
             <form onSubmit={restore} className={forgotPassw.inputs}>
-                <Input type={'email'} size="default" value={EmailValue} placeholder={'Email'} onChange={onChangeEmail}/>
+                <Input type={'email'} size="default" value={emailValue} placeholder={'Email'} onChange={onChangeEmail}/>
                 <Button type="primary" size="medium">
                     Восстановить
                 </Button>

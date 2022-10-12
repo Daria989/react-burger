@@ -16,19 +16,19 @@ function Login() {
     const dispatch = useDispatch();
     const location = useLocation();
     
-    const [EmailValue, setEmailValue] = useState('');
+    const [emailValue, setEmailValue] = useState('');
     const onChangeEmail = e => {
         setEmailValue(e.target.value)
     }
 
-    const [PasswordValue, setPasswordValue] = useState('')
+    const [passwordValue, setPasswordValue] = useState('')
     const onChangePassword = e => {
         setPasswordValue(e.target.value)
     }
 
     const form = {
-        email: EmailValue, 
-        password: PasswordValue
+        email: emailValue, 
+        password: passwordValue
     }
 
     const userAuthorization = useCallback(
@@ -55,8 +55,8 @@ return (
         <div className={login.container}>
             <form className={login.form} onSubmit={userAuthorization}>
                 <p className="text text_type_main-medium">Вход</p>
-                <Input type={'email'} size="default" value={EmailValue} placeholder={'Email'} onChange={onChangeEmail}/>
-                <PasswordInput onChange={onChangePassword} size="default" value={PasswordValue} name={'password'}/>
+                <Input type={'email'} size="default" value={emailValue} placeholder={'Email'} onChange={onChangeEmail}/>
+                <PasswordInput onChange={onChangePassword} size="default" value={passwordValue} name={'password'}/>
                 <Button type="primary" size="medium"> 
                     Войти
                 </Button>

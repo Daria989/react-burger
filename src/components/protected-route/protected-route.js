@@ -41,8 +41,7 @@ function ProtectedRoute({ children, ...rest }) {
   } 
 
 ProtectedRoute.propTypes = {
-    children: PropTypes.node.isRequired,
-    rest: PropTypes.string.isRequired
+    children: PropTypes.node.isRequired
 }
 
 export default ProtectedRoute;
