@@ -182,8 +182,7 @@ export function getUpdateUserData(form) {
 			type: GET_UPDATE_USER_REQUEST,
 		});
     updateUserRequest(form)
-    .then(checkResponse)
-    // .then (res => res.json())
+    .then (res => res.json())
     .then (res  => {
       if (res && res.success) {
         dispatch({

@@ -3,14 +3,14 @@
 }
 
 .header {
-    position: fixed;
+    position: absolute;
     top: 50px;
     right: 50px;
     z-index: 1;
 }
 
 .content {
-    position: absolute;
+    position: fixed;
     display: flex;
     flex-direction: column;
     align-items: center;
