@@ -10,14 +10,15 @@ import {
 
     GET_CONSTRUCTOR_LIST,
     ADD_CONSTRUCTOR_ELEMENT,
-    DELETE_CONSTRUCTOR_ELEMENT
-} from '../actions/actions';
+    DELETE_CONSTRUCTOR_ELEMENT,
+
+} from '../actions/data-actions';
 
 import { 
     orderInitialState,
     ingredientInitialState,
     ingredientDetailsInitialState,
-    constructorInitialState
+    constructorInitialState,
 } from '../initialData';
 
   export const addIngredientsList = (state = ingredientInitialState, action) => {
@@ -78,7 +79,7 @@ import {
       }
   }
 
-  export const addConstructorList = ((state = constructorInitialState, action) => { 
+  export const addConstructorList = (state = constructorInitialState, action) => { 
     switch (action.type) {
       case GET_CONSTRUCTOR_LIST: {
         return { 
@@ -109,4 +110,3 @@ import {
         }
       }
   }
-)

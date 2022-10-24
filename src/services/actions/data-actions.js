@@ -9,9 +9,9 @@ export const POST_DATA_FAILED = 'POST_DATA_FAILED';
 export const ADD_INGREDIENT_DETAILS = 'ADD_INGREDIENT_DETAILS';
 export const DELETE_INGREDIENT_DETAILS = 'ADD_INGREDIENT_DETAILS';
 
-export const GET_CONSTRUCTOR_LIST= 'GET_CONSTRUCTOR_LIST';
-export const ADD_CONSTRUCTOR_ELEMENT='ADD_CONSTRUCTOR_ELEMENT';
-export const DELETE_CONSTRUCTOR_ELEMENT='DELETE_CONSTRUCTOR_ELEMENT';
+export const GET_CONSTRUCTOR_LIST = 'GET_CONSTRUCTOR_LIST';
+export const ADD_CONSTRUCTOR_ELEMENT = 'ADD_CONSTRUCTOR_ELEMENT';
+export const DELETE_CONSTRUCTOR_ELEMENT = 'DELETE_CONSTRUCTOR_ELEMENT';
 
 export function getConstructorData(data) {
   return function(dispatch) {
@@ -105,4 +105,3 @@ export function deleteIngredientDetails(data) {
     }) 
   }
 }
-

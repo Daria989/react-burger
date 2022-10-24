@@ -3,21 +3,24 @@ import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-comp
 import ConstructorItem from '../constructor-item/constructor-item';
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import Modal from "../modal/modal";
-import { useState, useEffect, useCallback} from 'react';
-import OrderDetails from "../order-details/order-details";
+import { useCallback} from 'react';
 import { useSelector } from 'react-redux';
-import { getOrderDetails, getConstructorData, addConstructorElement, deleteConstructorElement } from '../../services/actions/actions';
+import {getCookie } from '../../services/cookie';
+import { getOrderDetails, getConstructorData, addConstructorElement, deleteConstructorElement } from '../../services/actions/data-actions';
 import { useDrop} from 'react-dnd';
 import uuid from 'react-uuid';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import {useLocation} from "react-router-dom";
 
 function BurgerConstructor() {
-  const [modalActive, setModalActive] = useState(false);
   const data = useSelector(store => store.addConstructorList.data);
 
-  const res = useSelector(store => store.addOrderDetails.data.order.number);
+  const user = useSelector((store) => store.authReducer.name);
+  const accessToken = getCookie('token');
   const dispatch = useDispatch();
+  const location = useLocation();
+  const history = useHistory();
 
   const handleClose = (id) => {
     dispatch(deleteConstructorElement(id))
@@ -55,16 +58,21 @@ function BurgerConstructor() {
   }
 
   function placeOrder() {
-    setModalActive(true);
-    const obj = {
-      "ingredients": findIngredientsIds(data)
-    };
-    dispatch(getOrderDetails(obj));
+    if (user && accessToken) {
+      const obj = {
+        "ingredients": findIngredientsIds(data)
+      };
+      dispatch(getOrderDetails(obj));
+      history.push({
+        pathname: '/',
+        state: {
+          background: location
+        }
+      });
+    } else {
+        history.replace({ pathname: '/login' })
+    }
    }
-
-   function closeDetails() {
-    setModalActive(false);
-  }
 
   const moveCard = useCallback((dragIndex, hoverIndex) => {
     const dragCard = data[dragIndex];
@@ -124,11 +132,6 @@ function BurgerConstructor() {
             <Button type="primary" disabled  size="medium" onClick={placeOrder}>
               Оформить заказ
             </Button>
-            }
-            {modalActive &&
-            <Modal closeDetails={closeDetails} header = {''}>
-                  <OrderDetails res={res}/>
-            </Modal>
             }
           </div>
         </div>

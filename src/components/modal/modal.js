@@ -6,11 +6,9 @@ import ModalOverlay from '../modal-overlay/modal-overlay';
 import PropTypes from 'prop-types';
 
 const modalRoot = document.getElementById("react-modals");
-
-function Modal({children, header, closeDetails}) {
-
+function Modal({onClose, children}) {
     useEffect(() => {
-        const onEscapeEvent = e => e.key === "Escape" ? closeDetails() : null
+        const onEscapeEvent = e => e.key === "Escape" ? onClose() : null
         document.body.addEventListener('keydown', onEscapeEvent)
         
         return () => {
@@ -18,14 +16,13 @@ function Modal({children, header, closeDetails}) {
         }
     }, [])
 
-    return ReactDOM.createPortal(
+        return ReactDOM.createPortal(
         <>
-            <ModalOverlay closeDetails={closeDetails}/>
+            <ModalOverlay onClose={onClose}/>
             <div className = {popup.content} >
                 <div className={popup.header}>
-                    <h2 className={'text text_type_main-large'}>{header}</h2>
                     <div className={`mt-10  mr-10 ${popup.closeIcon}`}>
-                        <CloseIcon type="primary" onClick={closeDetails}/>
+                        <CloseIcon type="primary" onClick={onClose}/>
                     </div>
                 </div>
                 {children}
@@ -37,8 +34,7 @@ function Modal({children, header, closeDetails}) {
 
 Modal.propTypes = {
     children: PropTypes.node.isRequired,
-    header: PropTypes.string.isRequired,
-    closeDetails: PropTypes.func.isRequired
+    onClose: PropTypes.func.isRequired
 }
 
 export default Modal;

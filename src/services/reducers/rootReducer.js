@@ -1,9 +1,13 @@
 import { combineReducers } from 'redux';
-import { addIngredientsList, addOrderDetails, addIngredientDetails, addConstructorList } from './reducers';
+import { authReducer } from './auth-reducer';
+
+import { addIngredientsList, addOrderDetails, addIngredientDetails, 
+  addConstructorList} from './data-reducer';
 
 export const rootReducer = combineReducers({
     addIngredientsList: addIngredientsList,
     addOrderDetails: addOrderDetails,
     addIngredientDetails: addIngredientDetails,
-    addConstructorList: addConstructorList
+    addConstructorList: addConstructorList,
+    authReducer: authReducer,
   });
