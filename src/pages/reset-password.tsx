@@ -10,17 +10,17 @@ import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 function ResetPassword() {
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<any>();
 
     const [codeValue, setCodeValue] = useState('');
     
-    const onChangeEmail = e => {
+    const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
         setCodeValue(e.target.value);
     }
 
     const [passwordValue, setPasswordValue] = useState('');
 
-    const onChangePassword = e => {
+    const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
         setPasswordValue(e.target.value)
     }
 
@@ -38,10 +38,10 @@ function ResetPassword() {
         [form]
     );
 
-    const resetPasswordSuccess = useSelector((store) => store.authReducer.resetPasswordSuccess);
-    const user = useSelector((store) => store.authReducer.name);
+    const resetPasswordSuccess = useSelector<any>((store) => store.authReducer.resetPasswordSuccess);
+    const user = useSelector<any>((store) => store.authReducer.name);
     const token = localStorage.getItem('refreshToken');
-    const forgotPasswordSuccess = useSelector((store) => store.authReducer.forgotPasswordSuccess);
+    const forgotPasswordSuccess = useSelector<any>((store) => store.authReducer.forgotPasswordSuccess);
 
     if (resetPasswordSuccess) {
         return (

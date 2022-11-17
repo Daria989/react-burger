@@ -1,8 +1,9 @@
 import {getCookie, setCookie} from './services/cookie';
+import {TForm} from './utils/types';
 
 const baseUrl = "https://norma.nomoreparties.space/api";
 
-export const checkResponse = (res) => {
+export const checkResponse = (res: Response) => {
   return res.ok ? res.json() : res.json().then((error) => Promise.reject(error));
 };
 
@@ -11,7 +12,7 @@ export async function apiGetIngredients() {
     .then(checkResponse)
 }
 
-export async function apiPostOrder(order) {
+export async function apiPostOrder(order: number) {
   return fetch(`${baseUrl}/orders`, {
     method: 'POST',
     headers: {
@@ -22,12 +23,12 @@ export async function apiPostOrder(order) {
     .then(checkResponse)
 }
 
-const saveTokens = (refreshToken, accessToken) => {
+const saveTokens = (refreshToken: string, accessToken: string) => {
   setCookie('accessToken', accessToken);
   localStorage.setItem('refreshToken', refreshToken);
 }
 
-export async function forgotPasswordRequest(email) {
+export async function forgotPasswordRequest(email: string) {
   return await fetch(`${baseUrl}/password-reset`, {
     method: 'POST',
     headers: {
@@ -40,7 +41,7 @@ export async function forgotPasswordRequest(email) {
   .then(checkResponse)
 };
 
-export async function resetRequest(form) {
+export async function resetRequest(form: TForm) {
   return await fetch(`${baseUrl}/password-reset/reset`, {
     method: 'POST',
     headers: {
@@ -51,7 +52,7 @@ export async function resetRequest(form) {
   .then(checkResponse)
 };
 
-export async function registerRequest(userName, email, password) {
+export async function registerRequest(userName: string, email: string, password: string) {
   return await fetch(`${baseUrl}/auth/register`, {
     method: 'POST',
     headers: {
@@ -66,7 +67,7 @@ export async function registerRequest(userName, email, password) {
   .then(checkResponse)
 };
 
-export async function loginRequest(form) {
+export async function loginRequest(form: TForm) {
   return await fetch(`${baseUrl}/auth/login`, {
     method: 'POST',
     headers: {
@@ -90,7 +91,7 @@ export async function refreshTokenRequest() {
   .then(checkResponse)
 };
 
-export async function logoutRequest(refreshToken) {
+export async function logoutRequest(refreshToken: string) {
   return await fetch(`${baseUrl}/auth/logout`, {
     method: 'POST',
     headers: {
@@ -103,7 +104,7 @@ export async function logoutRequest(refreshToken) {
   .then(checkResponse)
 };
 
-export const updateUserRequest = (form) => {
+export const updateUserRequest = (form: TForm) => {
   return fetch(`${baseUrl}/auth/user`, {
     method: 'PATCH',
     headers: {
@@ -115,17 +116,21 @@ export const updateUserRequest = (form) => {
   .then(checkResponse)
 };
 
-export const fetchWithRefresh = async(url, options) => {
+export const fetchWithRefresh = async(url: string, options: RequestInit) => {
   try {
     const res = await fetch(url, options);
 
     return await checkResponse(res);
-  } catch (err) {
-    if (err.message === 'jwt expired') {
+  } catch (err: unknown) {
+    const customError = err as {
+      code: string; 
+      message: string;
+    }
+    if (customError.message === 'jwt expired') {
       const {refreshToken, accessToken} = await refreshTokenRequest();
       saveTokens(refreshToken, accessToken);
 
-      options.headers.authorization = accessToken;
+      (options.headers as { [key: string]: string }) = accessToken;
 
       const res = await fetch(url, options);
 

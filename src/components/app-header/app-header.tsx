@@ -2,20 +2,21 @@ import {Logo} from '@ya.praktikum/react-developer-burger-ui-components'
 import {BurgerIcon} from '@ya.praktikum/react-developer-burger-ui-components'
 import {ProfileIcon} from '@ya.praktikum/react-developer-burger-ui-components'
 import {ListIcon} from '@ya.praktikum/react-developer-burger-ui-components'
+import type {TIconTypes} from '../../utils/types'
 import appHeader from './app-header.module.css';
 import {useState} from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 function AppHeader() {
-  const user = useSelector((store) => store.authReducer.name);
+  const user: any = useSelector<any>((store) => store.authReducer.name);
 
-  const [isBurgerHovering, setBurgerIsHovering] = useState("secondary");
-  const [isListIconHovering, setListIconIsHovering] = useState("secondary");
-  const [isProfileIconHovering, setProfileIconIsHovering] = useState("secondary");
-  const [isBurgerTextHovering, setBurgerTextIsHovering] = useState("pl-2 text text_type_main-default text_color_inactive");
-  const [isListIconTextHovering, setListIconTextIsHovering] = useState("pl-2 text text_type_main-default text_color_inactive");
-  const [isProfileTextIconHovering, setProfileTextIconIsHovering] = useState("pl-2 text text_type_main-default text_color_inactive");
+  const [isBurgerHovering, setBurgerIsHovering] = useState<TIconTypes>("secondary");
+  const [isListIconHovering, setListIconIsHovering] = useState<TIconTypes>("secondary");
+  const [isProfileIconHovering, setProfileIconIsHovering] = useState<TIconTypes>("secondary");
+  const [isBurgerTextHovering, setBurgerTextIsHovering] = useState<string>("pl-2 text text_type_main-default text_color_inactive");
+  const [isListIconTextHovering, setListIconTextIsHovering] = useState<string>("pl-2 text text_type_main-default text_color_inactive");
+  const [isProfileTextIconHovering, setProfileTextIconIsHovering] = useState<string>("pl-2 text text_type_main-default text_color_inactive");
 
   const handleMouseBurgerOver = () => {
     setBurgerIsHovering("primary");

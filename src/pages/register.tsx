@@ -10,24 +10,24 @@ import { useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 function Register() {
-    const registerSuccess = useSelector(store => store.authReducer.registerSuccess);
-    const user = useSelector(store => store.authReducer.user);
+    const registerSuccess = useSelector<any>(store => store.authReducer.registerSuccess);
+    const user = useSelector<any>(store => store.authReducer.user);
     const token = localStorage.getItem('refreshToken');
 
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<any>();
 
     const [emailValue, setEmailValue] = useState('');
-    const onChangeEmail = e => {
+    const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
         setEmailValue(e.target.value)
     }
 
     const [passwordValue, setPasswordValue] = useState('');
-    const onChangePassword = e => {
+    const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
         setPasswordValue(e.target.value)
     }
 
     const [nameValue, setNameValue] = useState('');
-    const onChangeName = e => {
+    const onChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
         setNameValue(e.target.value)
     }
 

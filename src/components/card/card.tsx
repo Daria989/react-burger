@@ -1,20 +1,20 @@
 import card from './card.module.css';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import { DescriptionType } from '../../utils/types'
 import { useDispatch} from 'react-redux';
 import { getIngredientDetails } from '../../services/actions/data-actions';
 import { useDrag } from "react-dnd";
 import { Counter } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useSelector } from 'react-redux';
 import {Link, useLocation} from "react-router-dom";
+import {TIngredientType, TIngredientTypeCardDescription} from '../../utils/types'
 
-function Card({description}) {
+function Card({description}: TIngredientTypeCardDescription) {
 
-  const data = useSelector(store => store.addConstructorList.data);
+  const data: any = useSelector<any>(store => store.addConstructorList.data);
   const location = useLocation();
 
   const {name, type, price, image, _id, key, ...details} = description;
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<any>();
 
   const [{opacity}, ref] = useDrag({
     type: "ingredient",
@@ -28,7 +28,7 @@ function Card({description}) {
     dispatch(getIngredientDetails(description));
   }
 
-  let counter = data.filter(element => element.name === name).length
+  let counter = data.filter((element: TIngredientType) => element.name === name).length
   if (type === 'bun') counter--;
 
   return (
@@ -54,9 +54,5 @@ function Card({description}) {
       </div>      
   );
 };
-
-Card.propTypes = {
-  description: DescriptionType.isRequired
-}; 
 
 export default Card;

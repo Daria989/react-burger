@@ -3,13 +3,12 @@ import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useState, useRef, useEffect} from 'react';
 import Ingredient from '../ingredient/ingredient';
 
-
 function BurgerIngredients() {
-  const [current, setCurrent] = useState('bun');
-  const rootRef = useRef(null);
-  const bunRef = useRef(null);
-  const sauceRef = useRef(null);
-  const mainRef = useRef(null);
+  const [current, setCurrent] = useState<string>('bun');
+  const rootRef = useRef<HTMLInputElement>(null);
+  const bunRef = useRef<HTMLInputElement>(null);
+  const sauceRef = useRef<HTMLInputElement>(null);
+  const mainRef = useRef<HTMLInputElement>(null);
 
 function handleScroll() {
   if (rootRef && bunRef && sauceRef && mainRef && rootRef.current && bunRef.current && sauceRef.current && mainRef.current) {
@@ -24,7 +23,7 @@ function handleScroll() {
 }
 
 useEffect(() => {
-  document.querySelector(`#${current}`).scrollIntoView();
+  document.querySelector(`#${current}`)?.scrollIntoView();
 },[current])
 
   return (

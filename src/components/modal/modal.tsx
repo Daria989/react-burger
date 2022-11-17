@@ -3,12 +3,13 @@ import ReactDOM from 'react-dom';
 import popup from './modal.module.css';
 import {CloseIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import ModalOverlay from '../modal-overlay/modal-overlay';
-import PropTypes from 'prop-types';
+import {TModal} from '../../utils/types'
 
-const modalRoot = document.getElementById("react-modals");
-function Modal({onClose, children}) {
+const modalRoot = document.getElementById("react-modals")!;
+
+function Modal({onClose, children}: TModal) {
     useEffect(() => {
-        const onEscapeEvent = e => e.key === "Escape" ? onClose() : null
+        const onEscapeEvent = (e: any) => e.key === "Escape" ? onClose() : null
         document.body.addEventListener('keydown', onEscapeEvent)
         
         return () => {
@@ -30,11 +31,6 @@ function Modal({onClose, children}) {
         </>,
         modalRoot
     )
-}
-
-Modal.propTypes = {
-    children: PropTypes.node.isRequired,
-    onClose: PropTypes.func.isRequired
 }
 
 export default Modal;

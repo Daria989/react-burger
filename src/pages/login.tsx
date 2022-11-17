@@ -13,16 +13,22 @@ import {useLocation} from 'react-router-dom';
 
 function Login() {
 
-    const dispatch = useDispatch();
-    const location = useLocation();
+    interface LocationState {
+        from: {
+          pathname: string;
+        };
+      }
+
+    const dispatch = useDispatch<any>();
+    const location = useLocation<LocationState>();
     
     const [emailValue, setEmailValue] = useState('');
-    const onChangeEmail = e => {
+    const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
         setEmailValue(e.target.value)
     }
 
     const [passwordValue, setPasswordValue] = useState('')
-    const onChangePassword = e => {
+    const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
         setPasswordValue(e.target.value)
     }
 
@@ -39,7 +45,7 @@ function Login() {
         [form]
       );
 
-    const user = useSelector((store) => store.authReducer.name);
+    const user = useSelector<any>((store) => store.authReducer.name);
     const accessToken = getCookie('token');
     
     if (user || accessToken) {

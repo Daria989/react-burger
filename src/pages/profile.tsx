@@ -9,25 +9,25 @@ import { useCallback } from 'react';
 import { GET_UPDATE_USER_SUCCESS } from '../services/actions/auth-actions';
 
 function Profile() {
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<any>();
     const refreshToken = localStorage.getItem('refreshToken');
 
-    const name = useSelector((store) => store.authReducer.name);
-    const email = useSelector((store) => store.authReducer.email);
-    const password = useSelector((store) => store.authReducer.password);
+    const name = useSelector<any, string>((store) => store.authReducer.name);
+    const email = useSelector<any, string>((store) => store.authReducer.email);
+    const password = useSelector<any, string>((store) => store.authReducer.password);
 
-    const [nameValue, setNameValue] = useState(name);
-    const onChangeName = e => {
+    const [nameValue, setNameValue] = useState<string>(name);
+    const onChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
         setNameValue(e.target.value)
     }
 
-    const [emailValue, setEmailValue] = useState(email);
-    const onChangeEmail = e => {
+    const [emailValue, setEmailValue] = useState<string>(email);
+    const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
         setEmailValue(e.target.value)
     }
 
-    const [passwordValue, setPasswordValue] = useState(password);
-    const onChangePassword = e => {
+    const [passwordValue, setPasswordValue] = useState<string>(password);
+    const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
         setPasswordValue(e.target.value)
     }
 

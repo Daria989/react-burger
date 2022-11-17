@@ -14,16 +14,17 @@ import OrderDetails from "../order-details/order-details";
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getData } from '../../services/actions/data-actions';
+import {TLocationState} from '../../utils/types'
 
 function App() {
   const history = useHistory();
-  const location = useLocation();
-  const dispatch = useDispatch();
+  const location = useLocation<TLocationState>();
+  const dispatch = useDispatch<any>();
   const background = location.state && location.state.background;
   const handleModalClose = () => history.goBack();
 
   useEffect(() => {
-    dispatch(getData());
+    dispatch(getData()); 
   }, [dispatch])
 
   return (

@@ -10,12 +10,11 @@ import { Redirect } from 'react-router-dom';
 import { getForgotPasswordData } from '../services/actions/auth-actions';
 
 function ForgotPassword() {
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<any>();
     
-
-    const [emailValue, setEmailValue] = useState('');
-    const onChangeEmail = e => {
-        setEmailValue(e.target.value)
+    const [emailValue, setEmailValue] = useState<string>('');
+    const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>): void => {
+        setEmailValue(e.currentTarget.value)
     }
 
     const restore = useCallback(
@@ -26,8 +25,8 @@ function ForgotPassword() {
         [emailValue]
     );
 
-    const forgotPasswordSuccess = useSelector((store) => store.authReducer.forgotPasswordSuccess);
-    const user = useSelector((store) => store.authReducer.name);
+    const forgotPasswordSuccess = useSelector<any>((store) => store.authReducer.forgotPasswordSuccess);
+    const user = useSelector<any>((store) => store.authReducer.name);
     const token = localStorage.getItem('refreshToken');
 
     if (forgotPasswordSuccess) {

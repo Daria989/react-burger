@@ -12,32 +12,33 @@ import uuid from 'react-uuid';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import {useLocation} from "react-router-dom";
+import {TIngredientTypeWithIndex} from '../../utils/types'
 
 function BurgerConstructor() {
-  const data = useSelector(store => store.addConstructorList.data);
+  const data: any = useSelector<any>(store => store.addConstructorList.data);
 
-  const user = useSelector((store) => store.authReducer.name);
+  const user = useSelector<any>((store) => store.authReducer.name);
   const accessToken = getCookie('token');
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<any>();
   const location = useLocation();
   const history = useHistory();
 
-  const handleClose = (id) => {
+  const handleClose = (id: number) => {
     dispatch(deleteConstructorElement(id))
   };
 
   const [, dropTargetRef] = useDrop({
     accept: 'ingredient',
-    drop(item) {
+    drop(item: TIngredientTypeWithIndex) {
       dispatch(addConstructorElement({...item, dragId: uuid()}))
     }
   });
 
-  function findNotBun(arr) {
+  function findNotBun(arr: TIngredientTypeWithIndex[]) {
     return arr.filter(obj => obj.type !== 'bun');
   }
 
-  function findBun(arr) {
+  function findBun(arr: TIngredientTypeWithIndex[]) {
     const bun = arr.find((element) => element.type === 'bun')
     if (bun === undefined)
       return [];
@@ -45,15 +46,15 @@ function BurgerConstructor() {
       return [bun]
   }
 
-  function getArrOfIngredients(arr) {
+  function getArrOfIngredients(arr: TIngredientTypeWithIndex[]) {
     return findNotBun(arr).concat(findBun(arr)).concat(findBun(arr));
   }
 
-  function findIngredientsIds(arr) {
+  function findIngredientsIds(arr: TIngredientTypeWithIndex[]) {
     return getArrOfIngredients(arr).map(obj => obj._id);
   }
 
-  function priceSum(arr) {
+  function priceSum(arr: TIngredientTypeWithIndex[]) {
     return getArrOfIngredients(arr).map(obj => obj.price).reduce((previousValue, currentValue) => previousValue + currentValue, 0)
   }
 
@@ -74,7 +75,7 @@ function BurgerConstructor() {
     }
    }
 
-  const moveCard = useCallback((dragIndex, hoverIndex) => {
+  const moveCard = useCallback((dragIndex: number, hoverIndex: number) => {
     const dragCard = data[dragIndex];
     const newCards = [...data];
     newCards.splice(dragIndex, 1);

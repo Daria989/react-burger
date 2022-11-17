@@ -4,13 +4,13 @@ import { useEffect} from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { Redirect} from 'react-router-dom';
-import PropTypes from 'prop-types';
+import {TProtectedRoute} from '../../utils/types'
 
-function ProtectedRoute({ children, ...rest }) {
+function ProtectedRoute({ children, ...rest }: TProtectedRoute) {
     
-    const dispatch = useDispatch();
-    const getUserName = useSelector((store) => store.authReducer.name);
-    const getUserRequest = useSelector((store) => store.authReducer.getUserRequest);
+    const dispatch = useDispatch<any>();
+    const getUserName: any = useSelector<any>((store) => store.authReducer.name);
+    const getUserRequest: any = useSelector<any>((store) => store.authReducer.getUserRequest);
     const refreshToken = localStorage.getItem('refreshToken');
 
     useEffect(() => {
@@ -39,9 +39,5 @@ function ProtectedRoute({ children, ...rest }) {
       />
     );
   } 
-
-ProtectedRoute.propTypes = {
-    children: PropTypes.node.isRequired
-}
 
 export default ProtectedRoute;

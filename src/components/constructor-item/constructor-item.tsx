@@ -1,17 +1,17 @@
 import { useRef } from 'react';
-import { useDrop, useDrag } from 'react-dnd';
+import { useDrop, useDrag, XYCoord} from 'react-dnd';
 import { DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import constructorItem from './constructor-item.module.css';
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
-import PropTypes from 'prop-types';
+import {TIngredientTypeWithIndex, TIngredientTypeConstructorItemProps} from '../../utils/types'
 
-function ConstructorItem({item, index, moveCard, handleClose}) {
-  const DragRef = useRef(null);
+function ConstructorItem({item, index, moveCard, handleClose} : TIngredientTypeConstructorItemProps) {
+  const DragRef = useRef<HTMLInputElement>(null);
 
   const [, drop] = useDrop({
     accept: 'component',
 
-    hover(item, monitor) {
+    hover(item: TIngredientTypeWithIndex, monitor) {
       if (!DragRef.current) {
         return;
       }
@@ -25,7 +25,7 @@ function ConstructorItem({item, index, moveCard, handleClose}) {
       const hoverBoundingRect = DragRef.current?.getBoundingClientRect();
       const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
       const clientOffset = monitor.getClientOffset();
-      const hoverClientY = clientOffset.y - hoverBoundingRect.top;
+      const hoverClientY = (clientOffset as XYCoord).y - hoverBoundingRect.top;
 
       if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
         return;
@@ -53,7 +53,7 @@ function ConstructorItem({item, index, moveCard, handleClose}) {
   return (
     <>
       <div ref={DragRef} style={{ opacity }} className={`mb-4 mr-2 ${constructorItem.element}`}>
-        <DragIcon />
+        <DragIcon type="primary"/>
         <ConstructorElement
           text={item.name}
           handleClose={handleClose}
@@ -64,12 +64,5 @@ function ConstructorItem({item, index, moveCard, handleClose}) {
     </>
   )
 }
-
-ConstructorItem.propTypes = {
-  item: PropTypes.object.isRequired,
-  index: PropTypes.number.isRequired, 
-  moveCard: PropTypes.func.isRequired,
-  handleClose: PropTypes.func.isRequired,
-};
 
 export default ConstructorItem;

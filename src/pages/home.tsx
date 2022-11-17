@@ -6,7 +6,7 @@ import home from './home.module.css';
 import { useSelector } from 'react-redux';
 
 function Home() {
-    const data = useSelector(store => store.addIngredientsList.data);
+    const data: any = useSelector<any>(store => store.addIngredientsList.data);
     
 return (
     <>
