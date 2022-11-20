@@ -18,7 +18,7 @@ function ForgotPassword() {
     }
 
     const restore = useCallback(
-        e => {
+        (e: React.FormEvent) => {
           e.preventDefault();
           dispatch(getForgotPasswordData(emailValue));
         },

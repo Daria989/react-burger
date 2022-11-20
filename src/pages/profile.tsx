@@ -32,7 +32,7 @@ function Profile() {
     }
 
     const logout = useCallback(
-        e => {
+        (e: React.SyntheticEvent) => {
             e.preventDefault();
             dispatch(getLogoutData(refreshToken));
         },
@@ -40,7 +40,7 @@ function Profile() {
     );
 
     const cancelButtonClicked = useCallback(
-        e => {
+        (e: React.SyntheticEvent) => {
             e.preventDefault();
             setNameValue(name);
             setEmailValue(email);
@@ -58,7 +58,7 @@ function Profile() {
             "email": emailValue}
 
     const saveButtonClicked = useCallback(
-        e => {
+        (e: React.FormEvent) => {
           e.preventDefault();
           dispatch({
             type: GET_UPDATE_USER_SUCCESS,

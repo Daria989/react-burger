@@ -9,7 +9,7 @@ const modalRoot = document.getElementById("react-modals")!;
 
 function Modal({onClose, children}: TModal) {
     useEffect(() => {
-        const onEscapeEvent = (e: any) => e.key === "Escape" ? onClose() : null
+        const onEscapeEvent = (e: KeyboardEvent) => e.key === "Escape" ? onClose() : null
         document.body.addEventListener('keydown', onEscapeEvent)
         
         return () => {

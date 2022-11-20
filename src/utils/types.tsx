@@ -51,11 +51,6 @@ export type TModalOverlay = {
     onClose: () => void
 }
 
-export type TProtectedRoute = {
-    children: React.ReactChild,
-    path: string
-  }
-
 export type TLocationStateLogin = {
     from: {
         pathname: string;

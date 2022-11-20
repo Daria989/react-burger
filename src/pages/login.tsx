@@ -38,7 +38,7 @@ function Login() {
     }
 
     const userAuthorization = useCallback(
-        e => {
+        (e: React.FormEvent) => {
           e.preventDefault();
           dispatch(getLoginData(form));
         },

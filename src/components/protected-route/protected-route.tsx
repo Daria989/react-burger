@@ -4,9 +4,9 @@ import { useEffect} from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { Redirect} from 'react-router-dom';
-import {TProtectedRoute} from '../../utils/types'
+import { RouteProps } from 'react-router-dom';
 
-function ProtectedRoute({ children, ...rest }: TProtectedRoute) {
+function ProtectedRoute({ children, ...rest }: RouteProps & {children?: React.ReactNode}) {
     
     const dispatch = useDispatch<any>();
     const getUserName: any = useSelector<any>((store) => store.authReducer.name);
