@@ -4,22 +4,21 @@ import ConstructorItem from '../constructor-item/constructor-item';
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useCallback} from 'react';
-import { useSelector } from 'react-redux';
 import {getCookie } from '../../services/cookie';
 import { getOrderDetails, getConstructorData, addConstructorElement, deleteConstructorElement } from '../../services/actions/data-actions';
 import { useDrop} from 'react-dnd';
 import uuid from 'react-uuid';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from '../../utils/hooks';
 import { useHistory } from 'react-router-dom';
 import {useLocation} from "react-router-dom";
 import {TIngredientTypeWithIndex} from '../../utils/types'
 
 function BurgerConstructor() {
-  const data: any = useSelector<any>(store => store.addConstructorList.data);
+  const data: any = useSelector(store => store.addConstructorList.data);
 
-  const user = useSelector<any>((store) => store.authReducer.name);
+  const user = useSelector((store) => store.authReducer.name);
   const accessToken = getCookie('token');
-  const dispatch = useDispatch<any>();
+  const dispatch = useDispatch();
   const location = useLocation();
   const history = useHistory();
 

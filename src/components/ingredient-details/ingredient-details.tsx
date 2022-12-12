@@ -1,13 +1,14 @@
 import ingredientDetails from './ingredient-details.module.css';
-import { useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
-import {TIngredientTypeWithIndex} from '../../utils/types'
+import {TIngredientTypeWithIndex} from '../../utils/types';
+import { useSelector } from '../../utils/hooks';
 
 function IngredientDetails() {
     const { id } = useParams<{id?: string}>();
-    const data: any = useSelector<any>(store => store.addIngredientsList.data);
-    const currentIngredient = data.length? data.find((el: TIngredientTypeWithIndex) => el._id === id) : null;
-    console.log(data)
+    const data: any = useSelector(store => {
+        return store.addIngredientsList.data
+    });
+    const currentIngredient: any = data.length? data.find((el: TIngredientTypeWithIndex) => el._id === id) : null;
 
     if (!currentIngredient) {
         return null

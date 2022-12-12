@@ -7,16 +7,26 @@ export const checkResponse = (res: Response) => {
   return res.ok ? res.json() : res.json().then((error) => Promise.reject(error));
 };
 
+export const getOrderByNumber = (number: number) => {
+  return fetch(`${baseUrl}/orders/${number}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then(checkResponse);
+};
+
 export async function apiGetIngredients() {
   return fetch(`${baseUrl}/ingredients`)
     .then(checkResponse)
 }
 
-export async function apiPostOrder(order: number) {
+export async function apiPostOrder(order: object) {
   return fetch(`${baseUrl}/orders`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + getCookie('token'),
     },
     body: JSON.stringify(order)
   })
@@ -85,13 +95,13 @@ export async function refreshTokenRequest() {
       'Content-Type': 'application/json;charset=utf-8'
     },
     body: JSON.stringify({
-      token: localStorage.getItem('refreshToken')
+      "token": localStorage.getItem('refreshToken')
     })
   })
   .then(checkResponse)
 };
 
-export async function logoutRequest(refreshToken: string) {
+export async function logoutRequest(refreshToken: string | null) {
   return await fetch(`${baseUrl}/auth/logout`, {
     method: 'POST',
     headers: {
@@ -126,7 +136,8 @@ export const fetchWithRefresh = async(url: string, options: RequestInit) => {
       code: string; 
       message: string;
     }
-    if (customError.message === 'jwt expired') {
+    if (customError.message === 'jwt expired' || customError.message === 'jwt malformed') {
+      console.log(customError.message)
       const {refreshToken, accessToken} = await refreshTokenRequest();
       saveTokens(refreshToken, accessToken);
 

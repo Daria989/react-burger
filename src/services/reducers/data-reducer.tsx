@@ -12,6 +12,9 @@ import {
     ADD_CONSTRUCTOR_ELEMENT,
     DELETE_CONSTRUCTOR_ELEMENT,
 
+    GET_ORDER_SUCCESS,
+    GET_ORDER_FAILED,
+
 } from '../actions/data-actions';
 
 import { 
@@ -19,9 +22,38 @@ import {
     ingredientInitialState,
     ingredientDetailsInitialState,
     constructorInitialState,
+    burgerOrderInitialState
 } from '../initialData';
 
-  export const addIngredientsList = (state = ingredientInitialState, action) => {
+import { TIngredientInitialState, 
+  TOrderInitialState, 
+  TIngredientDetailsInitialState, 
+  TConstructorInitialState,
+  TBurgerOrderInitialState
+} from '../../utils/types';
+
+import { TIngredientsDataActions } from '../actions/data-actions';
+
+  export const addBurgerOrder = (state = burgerOrderInitialState, action: TIngredientsDataActions): TBurgerOrderInitialState => {
+    switch (action.type) {
+      case GET_ORDER_SUCCESS: {
+        return {
+          ...state,
+          data: action.data
+        };
+      }
+      case GET_ORDER_FAILED: {
+        return {
+          ...state
+        }
+      }
+      default: {
+        return state
+      }
+    }
+  }
+
+  export const addIngredientsList = (state = ingredientInitialState, action: TIngredientsDataActions): TIngredientInitialState => {
     switch (action.type) {
       case GET_DATA_SUCCESS: {
         return { 
@@ -36,12 +68,12 @@ import {
         };
       }
         default: {
-            return state
+          return state
         }
       }
   }
 
-  export const addIngredientDetails = (state = ingredientDetailsInitialState, action) => {
+  export const addIngredientDetails = (state = ingredientDetailsInitialState, action: TIngredientsDataActions): TIngredientDetailsInitialState => {
     switch (action.type) { 
       case ADD_INGREDIENT_DETAILS: {
         return {
@@ -59,7 +91,7 @@ import {
     }
   }
 
-  export const addOrderDetails = (state = orderInitialState, action) => {
+  export const addOrderDetails = (state = orderInitialState, action: TIngredientsDataActions): TOrderInitialState => {
     switch (action.type) {
       case POST_DATA_SUCCESS: {
         return { 
@@ -79,7 +111,7 @@ import {
       }
   }
 
-  export const addConstructorList = (state = constructorInitialState, action) => { 
+  export const addConstructorList = (state = constructorInitialState, action: TIngredientsDataActions): TConstructorInitialState => { 
     switch (action.type) {
       case GET_CONSTRUCTOR_LIST: {
         return { 

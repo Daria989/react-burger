@@ -1,28 +1,30 @@
-export const orderInitialState = {
+import { TOrderInitialState, TIngredientInitialState, TIngredientDetailsInitialState, TConstructorInitialState, TAuthInitialState, TBurgerOrderInitialState } from '../utils/types';
+
+export const orderInitialState: TOrderInitialState = {
     feedFailed: false,
     data: {
-        name: '',
-        order: {
-            number: 0
-        },
-        success: false
-    },
+        order: 0
+      }
 };
 
-export const ingredientInitialState = {
+export const ingredientInitialState: TIngredientInitialState = {
     feedFailed: false,
     data: []
 }
 
-export const ingredientDetailsInitialState = {
+export const ingredientDetailsInitialState: TIngredientDetailsInitialState = {
     data: {}
 }
 
-export const constructorInitialState = {
+export const constructorInitialState: TConstructorInitialState = {
     data: []
 }
 
-export const authInitialState = {
+export const burgerOrderInitialState: TBurgerOrderInitialState = {
+    data: null
+}
+
+export const authInitialState: TAuthInitialState = {
     name: '',
     email: '',
     password: '',

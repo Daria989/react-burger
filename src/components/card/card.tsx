@@ -1,20 +1,19 @@
 import card from './card.module.css';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useDispatch} from 'react-redux';
 import { getIngredientDetails } from '../../services/actions/data-actions';
 import { useDrag } from "react-dnd";
 import { Counter } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useSelector } from 'react-redux';
 import {Link, useLocation} from "react-router-dom";
 import {TIngredientType, TIngredientTypeCardDescription} from '../../utils/types'
+import { useDispatch, useSelector } from '../../utils/hooks';
 
 function Card({description}: TIngredientTypeCardDescription) {
 
-  const data: any = useSelector<any>(store => store.addConstructorList.data);
+  const data: any = useSelector(store => store.addConstructorList.data);
   const location = useLocation();
 
   const {name, type, price, image, _id, key, ...details} = description;
-  const dispatch = useDispatch<any>();
+  const dispatch = useDispatch();
 
   const [{opacity}, ref] = useDrag({
     type: "ingredient",

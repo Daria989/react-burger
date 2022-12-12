@@ -33,11 +33,11 @@ import {
     
 } from '../actions/auth-actions';
 
-import { 
-    authInitialState
-} from '../initialData';
+import { TAuthActions } from '../actions/auth-actions';
+import { TAuthInitialState } from '../../utils/types';
+import { authInitialState} from '../initialData';
 
-export const authReducer = (state = authInitialState, action) => {
+export const authReducer = (state = authInitialState, action: TAuthActions): TAuthInitialState | any => {
   switch (action.type) { 
 
 // регистрация 
@@ -198,7 +198,7 @@ export const authReducer = (state = authInitialState, action) => {
         name: action.user.name,
         email: action.user.email,
         getUserRequest: false,
-        getUserSuccess: true,
+        getUserSuccess: action.data,
         isTokenUpdated: true,
       };
     }
@@ -225,8 +225,8 @@ export const authReducer = (state = authInitialState, action) => {
       return {
         ...state,
         updateUserFailed: false,
-        name: action.user.name,
-        email: action.user.email,
+        name: action.data.name,
+        email: action.data.email,
         updateUserRequest: false,
       };
     }

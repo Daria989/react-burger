@@ -1,9 +1,9 @@
 import done from '../../images/done.png';
 import orderDetails from './order-details.module.css';
-import { useSelector } from 'react-redux';
+import { useSelector } from '../../utils/hooks';
 
 function OrderDetails() {
-    const res: any = useSelector<any>(store => store.addOrderDetails.data.order.number);
+    const res = useSelector(store => store.addOrderDetails.data.order);
     return (
         <>
             <div className={`mr-25 ml-25 mt-4 mb-8 text text_type_digits-large`}>{res}</div>

@@ -1,0 +1,91 @@
+.feed {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    width: 1280px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.orders {
+    width: 610px;
+}
+
+.scroll {
+    width: 610px;
+    height: 712px;
+    overflow-y: scroll;
+	overflow-x:hidden;
+}
+
+.orders::-webkit-scrollbar {
+	width: 8px;
+	background-color: #2F2F37;
+}
+
+.orders::-webkit-scrollbar-thumb {
+    background-color: #8585AD;
+    height: 400px;
+}
+
+.orders::-webkit-scrollbar-track {
+	height: 100px;
+}
+
+.table {
+    width: 610px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.list {
+    width: 580px;
+    height: 250px;
+    display: flex;
+}
+
+.ready {
+    width: 272px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+}
+
+.ready_list {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 250px;
+}
+
+.header {
+    height: 54px;
+    width: 272px;
+}
+
+.number {
+    color: #00CCCC;
+}
+.done {
+    height: 30px;
+    width: 584px;
+}
+
+.amount {
+    width: 584px;
+    height: 120px;
+}
+
+.link {
+	display: flex;
+	text-decoration: none;
+	color:#F2F2F3;
+	flex-direction: column;
+	align-items: center;
+}
+

@@ -4,17 +4,16 @@ import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useState } from 'react';
 import { Input } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import { getRegisterData } from '../services/actions/auth-actions';
-import { useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import { useDispatch, useSelector } from '../utils/hooks';
 
 function Register() {
-    const registerSuccess = useSelector<any>(store => store.authReducer.registerSuccess);
-    const user = useSelector<any>(store => store.authReducer.user);
+    const registerSuccess = useSelector(store => store.authReducer.registerSuccess);
+    const user = useSelector(store => store.authReducer.user);
     const token = localStorage.getItem('refreshToken');
 
-    const dispatch = useDispatch<any>();
+    const dispatch = useDispatch();
 
     const [emailValue, setEmailValue] = useState('');
     const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -5,12 +5,11 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getResetPasswordData} from '../services/actions/auth-actions';
 import { useCallback } from 'react';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import { useDispatch, useSelector } from '../utils/hooks';
 
 function ResetPassword() {
-    const dispatch = useDispatch<any>();
+    const dispatch = useDispatch();
 
     const [codeValue, setCodeValue] = useState('');
     
@@ -38,10 +37,10 @@ function ResetPassword() {
         [form]
     );
 
-    const resetPasswordSuccess = useSelector<any>((store) => store.authReducer.resetPasswordSuccess);
-    const user = useSelector<any>((store) => store.authReducer.name);
+    const resetPasswordSuccess = useSelector((store) => store.authReducer.resetPasswordSuccess);
+    const user = useSelector((store) => store.authReducer.name);
     const token = localStorage.getItem('refreshToken');
-    const forgotPasswordSuccess = useSelector<any>((store) => store.authReducer.forgotPasswordSuccess);
+    const forgotPasswordSuccess = useSelector((store) => store.authReducer.forgotPasswordSuccess);
 
     if (resetPasswordSuccess) {
         return (

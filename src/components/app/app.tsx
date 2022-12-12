@@ -3,6 +3,8 @@ import appStyles from './app.module.css';
 import Home  from '../../pages/home';
 import Login from '../../pages/login';
 import Register from '../../pages/register';
+import Feed from '../../pages/feed';
+import Order from '../order/order';
 import ForgotPassword from '../../pages/forgot-password';
 import ResetPassword from '../../pages/reset-password';
 import Profile from '../../pages/profile';
@@ -12,14 +14,14 @@ import Modal from '../modal/modal';
 import AppHeader from '../app-header/app-header';
 import OrderDetails from "../order-details/order-details";
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch } from '../../utils/hooks';
 import { getData } from '../../services/actions/data-actions';
-import {TLocationState} from '../../utils/types'
+import { TLocationState } from '../../utils/types'
 
 function App() {
   const history = useHistory();
   const location = useLocation<TLocationState>();
-  const dispatch = useDispatch<any>();
+  const dispatch = useDispatch();
   const background = location.state && location.state.background;
   const handleModalClose = () => history.goBack();
 
@@ -49,8 +51,17 @@ function App() {
         <Route path="/ingredients/:id" exact={true}>
 					<IngredientDetails />
 				</Route>
+        <Route path="/feed" exact={true}>
+					<Feed />
+				</Route>
+        <Route path='/feed/:id'>
+					<Order />
+				</Route>
         <ProtectedRoute path="/profile">
 					<Profile />
+				</ProtectedRoute>
+        <ProtectedRoute path='/profile/orders/:id' exact={true}>
+					<Order />
 				</ProtectedRoute>
         <Route>
 					<div className={appStyles.noPage}>
@@ -71,6 +82,22 @@ function App() {
         <Route  path='/' exact={true}>
           <Modal onClose={handleModalClose}>
             <OrderDetails />
+          </Modal>
+        </Route>
+      }
+
+      {background && 
+        <Route path='/feed/:id' exact={true}>
+          <Modal onClose={handleModalClose}>
+            <Order />
+          </Modal>
+        </Route>
+      }
+
+      {background && 
+        <Route path='/profile/orders/:id' exact={true}>
+          <Modal onClose={handleModalClose}>
+            <Order />
           </Modal>
         </Route>
       }

@@ -3,10 +3,10 @@ import BurgerConstructor from '../components/burger-constructor/burger-construct
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import home from './home.module.css';
-import { useSelector } from 'react-redux';
+import { useSelector } from '../utils/hooks';
 
 function Home() {
-    const data: any = useSelector<any>(store => store.addIngredientsList.data);
+    const data = useSelector(store => store.addIngredientsList.data);
     
 return (
     <>

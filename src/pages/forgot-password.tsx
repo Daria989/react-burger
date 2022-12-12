@@ -3,14 +3,13 @@ import { Input } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useState} from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
 import { useCallback } from 'react';
 import { Redirect } from 'react-router-dom';
 import { getForgotPasswordData } from '../services/actions/auth-actions';
+import { useDispatch, useSelector } from '../utils/hooks';
 
 function ForgotPassword() {
-    const dispatch = useDispatch<any>();
+    const dispatch = useDispatch();
     
     const [emailValue, setEmailValue] = useState<string>('');
     const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -25,8 +24,8 @@ function ForgotPassword() {
         [emailValue]
     );
 
-    const forgotPasswordSuccess = useSelector<any>((store) => store.authReducer.forgotPasswordSuccess);
-    const user = useSelector<any>((store) => store.authReducer.name);
+    const forgotPasswordSuccess = useSelector((store) => store.authReducer.forgotPasswordSuccess);
+    const user = useSelector((store) => store.authReducer.name);
     const token = localStorage.getItem('refreshToken');
 
     if (forgotPasswordSuccess) {

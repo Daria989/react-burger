@@ -9,8 +9,12 @@ import thunk from 'redux-thunk';
 import { rootReducer } from './services/reducers/rootReducer';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { BrowserRouter} from 'react-router-dom';
+import { socketMiddleware } from './services/middleware/socketMiddleware';
+import { socketMiddlewareAuth } from './services/middleware/socketMiddlewareAuth';
+import * as wsActions from './services/actions/wsActions';
+import * as wsActionsAuth from './services/actions/wsActionsAuth';
 
-const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
+export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk), applyMiddleware(socketMiddleware('wss://norma.nomoreparties.space/orders/all', wsActions), socketMiddlewareAuth('wss://norma.nomoreparties.space/orders', wsActionsAuth))));
 
 ReactDOM.render(
   <React.StrictMode>

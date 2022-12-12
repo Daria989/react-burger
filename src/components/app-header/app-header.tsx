@@ -6,10 +6,10 @@ import type {TIconTypes} from '../../utils/types'
 import appHeader from './app-header.module.css';
 import {useState} from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector } from '../../utils/hooks';
 
 function AppHeader() {
-  const user: any = useSelector<any>((store) => store.authReducer.name);
+  const user = useSelector((store) => store.authReducer.name);
 
   const [isBurgerHovering, setBurgerIsHovering] = useState<TIconTypes>("secondary");
   const [isListIconHovering, setListIconIsHovering] = useState<TIconTypes>("secondary");
@@ -58,7 +58,7 @@ function AppHeader() {
           </Link>
         </li>
     		<li className={`${appHeader.list} pl-5 pr-5 pb-4 pt-4`} onMouseOver={handleMouseListIconOver} onMouseOut={handleMouseListIconOut}>
-          <Link to="/">
+          <Link to="/feed">
             <ListIcon type={isListIconHovering}/>
             <span className={isListIconTextHovering}>Лента заказов</span>
           </Link>

@@ -1,14 +1,14 @@
 import Card from '../card/card';
 import ingredient from './ingredient.module.css';
-import { useSelector } from 'react-redux';
 import {TIngredientTypeWithIndex, TIngredientTypeIngredient} from '../../utils/types';
+import { useSelector } from '../../utils/hooks';
 
 function cardItem(id: string, arr: TIngredientTypeWithIndex[]) {
   return arr.filter((obj: TIngredientTypeWithIndex) => obj.type === id)
             .map((obj: TIngredientTypeWithIndex) => <Card key={obj._id} description={obj}/>)
 }
 function Ingredient({id, innerRef, type}: TIngredientTypeIngredient) {
-  const data: any = useSelector<any>(store => store.addIngredientsList.data);
+  const data: any = useSelector(store => store.addIngredientsList.data);
 
   return (
     <>

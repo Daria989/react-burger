@@ -4,12 +4,10 @@ import { PasswordInput } from '@ya.praktikum/react-developer-burger-ui-component
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import { getLoginData } from '../services/actions/auth-actions';
-import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import {getCookie } from '../services/cookie';
 import {useLocation} from 'react-router-dom';
+import { useDispatch, useSelector } from '../utils/hooks';
 
 function Login() {
 
@@ -19,7 +17,7 @@ function Login() {
         };
       }
 
-    const dispatch = useDispatch<any>();
+    const dispatch = useDispatch();
     const location = useLocation<LocationState>();
     
     const [emailValue, setEmailValue] = useState('');
@@ -40,18 +38,18 @@ function Login() {
     const userAuthorization = useCallback(
         (e: React.FormEvent) => {
           e.preventDefault();
-          dispatch(getLoginData(form));
+          dispatch(getLoginData(form))
         },
         [form]
       );
 
-    const user = useSelector<any>((store) => store.authReducer.name);
-    const accessToken = getCookie('token');
+    const user = useSelector((store) => store.authReducer.name);
+    const hasToken = localStorage.getItem('refreshToken')
     
-    if (user || accessToken) {
+    if (user && hasToken) {
         return (
             <Redirect
-            to={ location.state?.from?.pathname || '/' }
+                to={ location.state?.from?.pathname || '/' }
             />
         );
     }
