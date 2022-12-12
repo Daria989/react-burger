@@ -37,5 +37,28 @@
 .logo {
 	display:  flex;
 	flex-grow: 9;
+}
 
+.link {
+	display: flex;
+	align-items: center;
+	text-decoration: none;
+	/* color:#8585AD; */
+	align-items: center;
+}
+
+/* .link:hover {
+	color:#F2F2F3;
+} */
+
+.textActive {
+	color:#F2F2F3;
+}
+
+.text {
+	color:#8585AD;
+}
+
+.text:hover {
+	color:#F2F2F3;
 }

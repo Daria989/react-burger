@@ -15,8 +15,9 @@ import AppHeader from '../app-header/app-header';
 import OrderDetails from "../order-details/order-details";
 import { useEffect } from 'react';
 import { useDispatch } from '../../utils/hooks';
-import { getData } from '../../services/actions/data-actions';
+import { getData } from '../../services/actions/ingredientsAction';
 import { TLocationState } from '../../utils/types'
+import { clearOrder } from '../../services/actions/sendOrderAction';
 
 function App() {
   const history = useHistory();
@@ -24,6 +25,10 @@ function App() {
   const dispatch = useDispatch();
   const background = location.state && location.state.background;
   const handleModalClose = () => history.goBack();
+  const handleModalCloseOrder = () => {
+    history.goBack();
+    dispatch(clearOrder());
+  }
 
   useEffect(() => {
     dispatch(getData()); 
@@ -80,7 +85,7 @@ function App() {
 
       {background && 
         <Route  path='/' exact={true}>
-          <Modal onClose={handleModalClose}>
+          <Modal onClose={handleModalCloseOrder}>
             <OrderDetails />
           </Modal>
         </Route>

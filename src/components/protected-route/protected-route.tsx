@@ -1,14 +1,14 @@
 import { Route } from 'react-router-dom';
-import { getUserData } from '../../services/actions/auth-actions';
-import { useEffect} from 'react';
+import { getUserData } from '../../services/actions/authActions';
+import { useEffect } from 'react';
 import { Redirect} from 'react-router-dom';
 import { RouteProps } from 'react-router-dom';
-import { useDispatch, useSelector } from '../../utils/hooks';
+import { useDispatch } from '../../utils/hooks';
 
 function ProtectedRoute({ children, ...rest }: RouteProps & {children?: React.ReactNode}) {
     
     const dispatch = useDispatch();
-    const getUserFailed = useSelector((store) => store.authReducer.getUserFailed);
+    const hasToken = localStorage.getItem('refreshToken');
 
     useEffect(() => {
         dispatch(getUserData());
@@ -18,8 +18,9 @@ function ProtectedRoute({ children, ...rest }: RouteProps & {children?: React.Re
       <Route
         {...rest}
         render={({ location }) =>
-        !getUserFailed ? (
-            children
+        hasToken ? (
+          children
+            // null
           ) : (
             <Redirect
               to={{

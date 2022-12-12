@@ -4,7 +4,7 @@ import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch} from '../../utils/hooks';
 import { formatDate, findCorrespondingArr, unique } from '../../utils/functions';
-import { getOrderRequest } from '../../services/actions/data-actions';
+import { getOrderRequest } from '../../services/actions/getOrderAction';
 import { TIngredientTypeWithCount, TIngredientType } from '../../utils/types';
 
 function Order () {
@@ -47,7 +47,7 @@ function Order () {
 
     function ingredientsList(curOrder: Array<TIngredientTypeWithCount>): any {
         return curOrder.map((obj: TIngredientTypeWithCount, index: number) =>
-        <div key={index} className = {order.ingredient}>
+        <div key={index} className = {`mb-2 ${order.ingredient}`}>
             <div className = {`mr-4 ${order.image_wrapper}`}>
                 <img className = {order.image} src={obj.image_mobile} alt='img'/>
             </div>

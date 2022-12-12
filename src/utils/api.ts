@@ -1,14 +1,14 @@
-import {getCookie, setCookie} from './services/cookie';
-import {TForm} from './utils/types';
+import { getCookie, setCookie } from '../services/cookie';
+import { TForm } from './types';
+import { BASE_URL } from './constants'
 
-const baseUrl = "https://norma.nomoreparties.space/api";
 
 export const checkResponse = (res: Response) => {
   return res.ok ? res.json() : res.json().then((error) => Promise.reject(error));
 };
 
 export const getOrderByNumber = (number: number) => {
-  return fetch(`${baseUrl}/orders/${number}`, {
+  return fetch(`${BASE_URL}/orders/${number}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -17,12 +17,12 @@ export const getOrderByNumber = (number: number) => {
 };
 
 export async function apiGetIngredients() {
-  return fetch(`${baseUrl}/ingredients`)
+  return fetch(`${BASE_URL}/ingredients`)
     .then(checkResponse)
 }
 
 export async function apiPostOrder(order: object) {
-  return fetch(`${baseUrl}/orders`, {
+  return fetch(`${BASE_URL}/orders`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -39,7 +39,7 @@ const saveTokens = (refreshToken: string, accessToken: string) => {
 }
 
 export async function forgotPasswordRequest(email: string) {
-  return await fetch(`${baseUrl}/password-reset`, {
+  return await fetch(`${BASE_URL}/password-reset`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -52,7 +52,7 @@ export async function forgotPasswordRequest(email: string) {
 };
 
 export async function resetRequest(form: TForm) {
-  return await fetch(`${baseUrl}/password-reset/reset`, {
+  return await fetch(`${BASE_URL}/password-reset/reset`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -63,7 +63,7 @@ export async function resetRequest(form: TForm) {
 };
 
 export async function registerRequest(userName: string, email: string, password: string) {
-  return await fetch(`${baseUrl}/auth/register`, {
+  return await fetch(`${BASE_URL}/auth/register`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -78,7 +78,7 @@ export async function registerRequest(userName: string, email: string, password:
 };
 
 export async function loginRequest(form: TForm) {
-  return await fetch(`${baseUrl}/auth/login`, {
+  return await fetch(`${BASE_URL}/auth/login`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -89,7 +89,7 @@ export async function loginRequest(form: TForm) {
 };
 
 export async function refreshTokenRequest() {
-  return await fetch(`${baseUrl}/auth/token`, {
+  return await fetch(`${BASE_URL}/auth/token`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json;charset=utf-8'
@@ -102,7 +102,7 @@ export async function refreshTokenRequest() {
 };
 
 export async function logoutRequest(refreshToken: string | null) {
-  return await fetch(`${baseUrl}/auth/logout`, {
+  return await fetch(`${BASE_URL}/auth/logout`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -115,7 +115,7 @@ export async function logoutRequest(refreshToken: string | null) {
 };
 
 export const updateUserRequest = (form: TForm) => {
-  return fetch(`${baseUrl}/auth/user`, {
+  return fetch(`${BASE_URL}/auth/user`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
@@ -153,7 +153,7 @@ export const fetchWithRefresh = async(url: string, options: RequestInit) => {
 }
 
 export async function getUserRequest() {
-  return fetchWithRefresh(`${baseUrl}/auth/user`, {
+  return fetchWithRefresh(`${BASE_URL}/auth/user`, {
     method: 'GET',
     mode: 'cors',
     cache: 'no-cache',

@@ -5,7 +5,7 @@ import { useState} from 'react';
 import { Link } from 'react-router-dom';
 import { useCallback } from 'react';
 import { Redirect } from 'react-router-dom';
-import { getForgotPasswordData } from '../services/actions/auth-actions';
+import { getForgotPasswordData } from '../services/actions/authActions';
 import { useDispatch, useSelector } from '../utils/hooks';
 
 function ForgotPassword() {

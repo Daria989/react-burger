@@ -1,10 +1,14 @@
 import { combineReducers } from 'redux';
-import { authReducer } from './auth-reducer';
+import { authReducer } from './authReducer';
 import { wsReducer } from './wsReducers';
 import { wsReducerAuth } from './wsReducersAuth';
 
-import { addIngredientsList, addOrderDetails, addIngredientDetails, 
-  addConstructorList, addBurgerOrder} from './data-reducer';
+import { addIngredientsList, addIngredientDetails} from './ingredientsReducer';
+import { addBurgerOrder } from '../reducers/getOrderReducer';
+
+import { addConstructorList } from './constructorReducer';
+
+import { addOrderDetails} from './sendOrderReducer';
 
 export const rootReducer = combineReducers({
     addIngredientsList: addIngredientsList,

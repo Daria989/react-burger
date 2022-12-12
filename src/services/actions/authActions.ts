@@ -1,6 +1,6 @@
 import { registerRequest, loginRequest, 
   refreshTokenRequest, logoutRequest, getUserRequest, updateUserRequest, 
-  forgotPasswordRequest, resetRequest} from '../../api';
+  forgotPasswordRequest, resetRequest} from '../../utils/api';
 
 import { setCookie, deleteCookie } from '../cookie';
 import { TForm, AppDispatch} from '../../utils/types';

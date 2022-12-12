@@ -4,7 +4,7 @@ import { PasswordInput } from '@ya.praktikum/react-developer-burger-ui-component
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import { getLoginData } from '../services/actions/auth-actions';
+import { getLoginData } from '../services/actions/authActions';
 import { Redirect } from 'react-router-dom';
 import {useLocation} from 'react-router-dom';
 import { useDispatch, useSelector } from '../utils/hooks';
@@ -45,7 +45,6 @@ function Login() {
 
     const user = useSelector((store) => store.authReducer.name);
     const hasToken = localStorage.getItem('refreshToken')
-    
     if (user && hasToken) {
         return (
             <Redirect

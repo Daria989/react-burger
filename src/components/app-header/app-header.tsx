@@ -5,75 +5,67 @@ import {ListIcon} from '@ya.praktikum/react-developer-burger-ui-components'
 import type {TIconTypes} from '../../utils/types'
 import appHeader from './app-header.module.css';
 import {useState} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation  } from 'react-router-dom';
 import { useSelector } from '../../utils/hooks';
 
 function AppHeader() {
   const user = useSelector((store) => store.authReducer.name);
+  const { pathname } = useLocation();
 
   const [isBurgerHovering, setBurgerIsHovering] = useState<TIconTypes>("secondary");
   const [isListIconHovering, setListIconIsHovering] = useState<TIconTypes>("secondary");
   const [isProfileIconHovering, setProfileIconIsHovering] = useState<TIconTypes>("secondary");
-  const [isBurgerTextHovering, setBurgerTextIsHovering] = useState<string>("pl-2 text text_type_main-default text_color_inactive");
-  const [isListIconTextHovering, setListIconTextIsHovering] = useState<string>("pl-2 text text_type_main-default text_color_inactive");
-  const [isProfileTextIconHovering, setProfileTextIconIsHovering] = useState<string>("pl-2 text text_type_main-default text_color_inactive");
 
   const handleMouseBurgerOver = () => {
     setBurgerIsHovering("primary");
-    setBurgerTextIsHovering("pl-2 text text_type_main-default")
   };
 
   const handleMouseBurgerOut = () => {
     setBurgerIsHovering("secondary");
-    setBurgerTextIsHovering("pl-2 text text_type_main-default text_color_inactive");
   };
 
   const handleMouseListIconOver = () => {
     setListIconIsHovering("primary");
-    setListIconTextIsHovering("pl-2 text text_type_main-default");
   };
 
   const handleMouseListIconOut = () => {
     setListIconIsHovering("secondary");
-    setListIconTextIsHovering("pl-2 text text_type_main-default text_color_inactive");
   };
 
   const handleMouseProfileIconOver = () => {
     setProfileIconIsHovering("primary");
-    setProfileTextIconIsHovering("pl-2 text text_type_main-default");
   };
 
   const handleMouseProfileIconOut = () => {
     setProfileIconIsHovering("secondary");
-    setProfileTextIconIsHovering("pl-2 text text_type_main-default text_color_inactive");
   };
 
   return (
     <header className={`${appHeader.header}`}>
       <ul className={appHeader.container}>
         <li className={`${appHeader.burger} pl-5 pr-5 pb-4 pt-4 mr-2`} onMouseOver={handleMouseBurgerOver} onMouseOut={handleMouseBurgerOut}>
-          <Link to="/">
-            <BurgerIcon type={isBurgerHovering}/>
-            <span className={isBurgerTextHovering}>Конструктор</span>
+          <Link className = {appHeader.link} to="/">
+            <BurgerIcon type={pathname === '/' ? "primary" : isBurgerHovering}/>
+            <span className={pathname === '/' ? `${appHeader.textActive} pl-2 text text_type_main-default`: `${appHeader.text} pl-2 text text_type_main-default`}>Конструктор</span>
           </Link>
         </li>
     		<li className={`${appHeader.list} pl-5 pr-5 pb-4 pt-4`} onMouseOver={handleMouseListIconOver} onMouseOut={handleMouseListIconOut}>
-          <Link to="/feed">
-            <ListIcon type={isListIconHovering}/>
-            <span className={isListIconTextHovering}>Лента заказов</span>
+          <Link className = {appHeader.link} to="/feed">
+            <ListIcon type={pathname === '/feed' ? "primary" : isListIconHovering}/>
+            <span className={pathname === '/feed' ? `${appHeader.textActive} pl-2 text text_type_main-default`: `${appHeader.text} pl-2 text text_type_main-default`}>Лента заказов</span>
           </Link>
         </li>
         <li className={appHeader.logo}>
-          <Link to="/">
+          <Link className = {appHeader.link} to="/">
             <Logo />
           </Link>
         </li>
         <li className={`${appHeader.profile} pl-5 pr-5 pb-4 pt-4`} onMouseOver={handleMouseProfileIconOver} onMouseOut={handleMouseProfileIconOut}>
-          <Link to="/profile">
-            <ProfileIcon type={isProfileIconHovering}/>
+          <Link className = {appHeader.link} to="/profile">
+            <ProfileIcon type={pathname === '/profile' ? "primary" : isProfileIconHovering}/>
             {user ?  
-              <span className={isProfileTextIconHovering}>{user}</span>
-              :  <span className={isProfileTextIconHovering}>Личный кабинет</span>
+              <span className={pathname === '/profile' ? `${appHeader.textActive} pl-2 text text_type_main-default`: `${appHeader.text} pl-2 text text_type_main-default`}>{user}</span>
+              :  <span className={pathname === '/profile' ? `${appHeader.textActive} pl-2 text text_type_main-default`: `${appHeader.text} pl-2 text text_type_main-default`}>Личный кабинет</span>
             }
           </Link>
         </li>

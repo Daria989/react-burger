@@ -31,9 +31,9 @@ import {
     UPDATE_TOKEN_SUCCESS,
     UPDATE_TOKEN_FAILED
     
-} from '../actions/auth-actions';
+} from '../actions/authActions';
 
-import { TAuthActions } from '../actions/auth-actions';
+import { TAuthActions } from '../actions/authActions';
 import { TAuthInitialState } from '../../utils/types';
 import { authInitialState} from '../initialData';
 

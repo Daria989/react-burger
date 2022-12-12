@@ -2,8 +2,8 @@ import { store } from '../index'
 
 import { ThunkDispatch } from 'redux-thunk';
 
-import { TAuthActions } from '../services/actions/auth-actions';
-import { TIngredientsDataActions } from '../services/actions/data-actions';
+import { TAuthActions } from '../services/actions/authActions';
+import { TIngredientsDataActions } from '../services/actions/ingredientsAction';
 import { TWSAction } from '../services/actions/wsActions';
 import { TWSActionAuth } from '../services/actions/wsActionsAuth';
 import { PayloadAction } from '@reduxjs/toolkit';

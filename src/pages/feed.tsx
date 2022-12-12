@@ -24,7 +24,7 @@ if (!data) {
 }
 
 function doneOrders(arr: Array<TBurgerOrder>) {
-  return arr.filter((obj: TBurgerOrder) => obj.status === 'done').map((obj: TBurgerOrder) => <div key={obj._id} className = {`text text_type_digits-default mr-2 ${feed.number}`}>{obj.number}</div>)
+  return arr.slice(0, 30).filter((obj: TBurgerOrder) => obj.status === 'done').map((obj: TBurgerOrder) => <div key={obj._id} className = {`text text_type_digits-default mr-2 ${feed.number}`}>{obj.number}</div>)
 }
 
 function notDone(arr: Array<TBurgerOrder>) {
@@ -54,15 +54,15 @@ return (
         </div>
         <div className = {feed.table}>
           <div className = {`mb-15 ${feed.list}`}>
-            <div className = {`mr-9 mb-4 ${feed.ready}`}>
-              <div className = {`text text_type_main-medium mb-2 ${feed.header}`}>В работе</div>
-              {notDone(data.orders)}
-            </div>
             <div className = {`mb-10 ${feed.ready}`}>
               <div className = {`text text_type_main-medium mb-2 ${feed.header}`}>Готовы</div>
               <div className = {feed.ready_list}> 
                 {doneOrders(data.orders)}
               </div>
+            </div>
+            <div className = {`mr-9 mb-4 ${feed.ready}`}>
+              <div className = {`text text_type_main-medium mb-2 ${feed.header}`}>В работе</div>
+              {notDone(data.orders)}
             </div>
           </div>
           <div className = {`text text_type_main-medium ${feed.done}`}>Выполнено за все время:</div>

@@ -13,7 +13,7 @@ export const ingredientInitialState: TIngredientInitialState = {
 }
 
 export const ingredientDetailsInitialState: TIngredientDetailsInitialState = {
-    data: {}
+    data: null
 }
 
 export const constructorInitialState: TConstructorInitialState = {

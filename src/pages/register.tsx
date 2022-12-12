@@ -4,7 +4,7 @@ import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useState } from 'react';
 import { Input } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Link } from 'react-router-dom';
-import { getRegisterData } from '../services/actions/auth-actions';
+import { getRegisterData } from '../services/actions/authActions';
 import { Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from '../utils/hooks';
 

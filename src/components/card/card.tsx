@@ -1,6 +1,6 @@
 import card from './card.module.css';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import { getIngredientDetails } from '../../services/actions/data-actions';
+import { getIngredientDetails } from '../../services/actions/ingredientsAction';
 import { useDrag } from "react-dnd";
 import { Counter } from '@ya.praktikum/react-developer-burger-ui-components';
 import {Link, useLocation} from "react-router-dom";

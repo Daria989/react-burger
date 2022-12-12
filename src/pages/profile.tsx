@@ -2,9 +2,9 @@ import profile from './profile.module.css';
 import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useState } from 'react';
 import { NavLink, Route, Switch, useHistory } from 'react-router-dom';
-import { getLogoutData, getUpdateUserData } from '../services/actions/auth-actions';
+import { getLogoutData, getUpdateUserData } from '../services/actions/authActions';
 import { useCallback } from 'react';
-import { GET_UPDATE_USER_SUCCESS } from '../services/actions/auth-actions';
+import { GET_UPDATE_USER_SUCCESS } from '../services/actions/authActions';
 import { useDispatch, useSelector } from '../utils/hooks'
 import  ProtectedRoute  from '../components/protected-route/protected-route';
 import Orders from '../components/orders/orders';
@@ -37,8 +37,8 @@ function Profile() {
     const logout = useCallback(
         (e: React.SyntheticEvent) => {
             e.preventDefault();
+            history.replace({ pathname: '/login' });
             dispatch(getLogoutData(refreshToken));
-            history.replace({ pathname: '/login' })
         },
         [refreshToken]
     );
