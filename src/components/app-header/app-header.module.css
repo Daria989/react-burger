@@ -41,15 +41,10 @@
 
 .link {
 	display: flex;
-	align-items: center;
 	text-decoration: none;
-	/* color:#8585AD; */
+	color:#8585AD;
 	align-items: center;
 }
-
-/* .link:hover {
-	color:#F2F2F3;
-} */
 
 .textActive {
 	color:#F2F2F3;

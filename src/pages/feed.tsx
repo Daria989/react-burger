@@ -55,14 +55,16 @@ return (
         <div className = {feed.table}>
           <div className = {`mb-15 ${feed.list}`}>
             <div className = {`mb-10 ${feed.ready}`}>
-              <div className = {`text text_type_main-medium mb-2 ${feed.header}`}>Готовы</div>
+              <div className = {`text text_type_main-medium mb-4 ${feed.header}`}>Готовы</div>
               <div className = {feed.ready_list}> 
                 {doneOrders(data.orders)}
               </div>
             </div>
             <div className = {`mr-9 mb-4 ${feed.ready}`}>
-              <div className = {`text text_type_main-medium mb-2 ${feed.header}`}>В работе</div>
-              {notDone(data.orders)}
+              <div className = {`text text_type_main-medium mb-4 ${feed.header}`}>В работе</div>
+              <div className = {feed.ready_list}> 
+                {notDone(data.orders)}
+              </div>
             </div>
           </div>
           <div className = {`text text_type_main-medium ${feed.done}`}>Выполнено за все время:</div>
