@@ -6,6 +6,7 @@
 	justify-content: center;
 	align-items: center;
 	position: fixed;
+	z-index: 101;
 }
 
 .container {
@@ -36,5 +37,23 @@
 .logo {
 	display:  flex;
 	flex-grow: 9;
+}
 
+.link {
+	display: flex;
+	text-decoration: none;
+	color:#8585AD;
+	align-items: center;
+}
+
+.textActive {
+	color:#F2F2F3;
+}
+
+.text {
+	color:#8585AD;
+}
+
+.text:hover {
+	color:#F2F2F3;
 }
