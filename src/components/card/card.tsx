@@ -35,9 +35,10 @@ function Card({description}: TIngredientTypeCardDescription) {
         <Link 
           to={{
             pathname: `/ingredients/${_id}`,
-            state: { background: location }
+            state: { background: location },
           }}
-            className={card.link}>
+          data-testid = 'link'
+          className={card.link}>
           <div className={card.image}>
             <img src={image} alt={card.name}/>
             {counter > 0? <Counter count={counter} size="small" /> : null}

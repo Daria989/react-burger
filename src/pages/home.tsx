@@ -7,6 +7,7 @@ import { useSelector } from '../utils/hooks';
 
 function Home() {
     const data = useSelector(store => store.addIngredientsList.data);
+    console.log(data)
     
 return (
     <>
